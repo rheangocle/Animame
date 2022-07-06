@@ -1,0 +1,71 @@
+body {
+    margin: 0;
+    background: rgb(255, 255, 255);
+    text-align: center;
+    font-family: sans-serif;
+  }
+  .container {
+    position: relative;
+    width: 320px;
+    margin: 100px auto 0 auto;
+    perspective: 1000px;
+  }
+  
+  .carousel {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d; 
+    animation: rotate360 60s infinite forwards linear;
+  }
+  .carousel__face { 
+    position: absolute;
+    width: 300px;
+    height: 200px;
+    top: 20px;
+    left: 10px;
+    right: 10px;
+    background-size: cover;
+    /*box-shadow:inset 0 0 0 2000px rgba(0,0,0,0.5);*/
+    display: flex;
+  }
+  
+  span {
+    margin: auto;
+    font-size: 2rem;
+  }
+  
+  
+  .carousel__face:nth-child(1) {
+    background-image: url("https://i1.wp.com/www.thetemptrack.com/wp-content/uploads/2018/06/foodwarsboxsetheader.png");
+    transform: rotateY(  0deg) translateZ(730px); }
+  .carousel__face:nth-child(2) { 
+    background-image: url("https://img4.hulu.com/user/v3/artwork/c7a08df6-d0d5-4dd3-afff-d1f90133cd4e?base_image_bucket_name=image_manager&base_image=31f90904-d759-496c-82e2-b4c9c145f36a&size=1200x630&format=jpeg");
+      transform: rotateY( 40deg) translateZ(730px); }
+  .carousel__face:nth-child(3) {
+    background-image: url("https://c4.wallpaperflare.com/wallpaper/390/428/51/jojo-s-bizarre-adventure-jonathan-joestar-joseph-joestar-jotaro-kujo-josuke-higashikata-hd-wallpaper-preview.jpg");
+    transform: rotateY( 80deg) translateZ(730px); }
+  .carousel__face:nth-child(4) {
+    background-image: url("https://motgame.vn/wp-content/uploads/2022/05/spy-x-family-2.jpg");
+    transform: rotateY(120deg) translateZ(730px); }
+  .carousel__face:nth-child(5) { 
+    background-image: url("https://static.wikia.nocookie.net/774ca08e-c15d-4c21-8ca0-38bcf6d0e949/scale-to-width/755");
+   transform: rotateY(160deg) translateZ(730px); }
+  .carousel__face:nth-child(6) { 
+    background-image: url("https://images-na.ssl-images-amazon.com/images/S/pv-target-images/cd3576b23de38f03e468ac27a8b79a1530b5c7b082e17a0ab78090216f863676._RI_V_TTW_.jpg");
+   transform: rotateY(200deg) translateZ(730px); }
+  .carousel__face:nth-child(7) { 
+    background-image: url("https://nntheblog.b-cdn.net/wp-content/uploads/2022/05/image_2022-05-30_192446546.png");
+   transform: rotateY(240deg) translateZ(730px); }
+  .carousel__face:nth-child(8) {
+    background-image: url("https://img4.hulu.com/user/v3/artwork/93f78f8b-e56e-43b4-bae4-fc4367b55492?base_image_bucket_name=image_manager&base_image=6b0a7fc4-091f-446f-90c6-27000487a076&size=1200x630&format=jpeg");
+    transform: rotateY(280deg) translateZ(730px); }
+  .carousel__face:nth-child(9) {
+    background-image: url("https://thecinetalk.com/wp-content/uploads/2022/02/demon-slayer-1071x570.png");
+    transform: rotateY(320deg) translateZ(730px); }
+  
+  
+  
+  @keyframes rotate360 {
+    from {
+      transform: rotateY(0deg);
