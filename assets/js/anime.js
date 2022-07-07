@@ -1,5 +1,4 @@
 // anime search feature
-
 // searchField is a dummy variable. assign the real one later
 searchField.addEventListener("keydown", searchAnime);
 var searchAnime = function () {
