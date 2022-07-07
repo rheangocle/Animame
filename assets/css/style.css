@@ -111,6 +111,16 @@ img {
   opacity: .70;
 }
 
+li {
+  list-style-type: disc;
+}
+
+.summary-block,
+li {
+  justify-content: flex-start;
+  text-align: left;
+}
+
 @keyframes rotate360 {
   from {
     transform: rotateY(0deg);
