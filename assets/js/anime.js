@@ -12,7 +12,7 @@ var idField = document.getElementById("anime-id");
 // searchField.addEventListener("keydown", searchAnime);
 var searchAnime = function () {
     // user input from a search field
-    var search = "spy x family";
+    var search = "jujutsu kaisen";
     // replacing spaces with %20 for the api call
     var title = search.replace(/ /g, "%20");
     // fetching data from the api, limiting to top 3 options during the search
@@ -120,37 +120,37 @@ const options = {
 };
 
 //q=food name
-for (var i = 0; i < foodArr.spyFamily.length; i++) {
-    fetch(`https://tasty.p.rapidapi.com/recipes/list?from=0&size=2&q=${foodArr.spyFamily[i]}`, options)
+// for (var i = 0; i < foodArr.spyFamily.length; i++) {
+//     fetch(`https://tasty.p.rapidapi.com/recipes/list?from=0&size=2&q=${foodArr.spyFamily[i]}`, options)
 
-        // fetch(`https://tasty.p.rapidapi.com/recipes/list?from=0&size=20&q=${foodArr.spyFamily[1]}`, options)
-        .then(response => response.json())
-        .then(data => {
-            //console.log(data);
-            //console.log(data.results[0].name);
-            // console.log(data.results[2].instructions);
-            // console.log(data.results[2].nutrition);
-            //console.log(data.results[0].thumbnail_url);
-            // console.log(data.results[2].original_video_url);
+//         // fetch(`https://tasty.p.rapidapi.com/recipes/list?from=0&size=20&q=${foodArr.spyFamily[1]}`, options)
+//         .then(response => response.json())
+//         .then(data => {
+//             //console.log(data);
+//             //console.log(data.results[0].name);
+//             // console.log(data.results[2].instructions);
+//             // console.log(data.results[2].nutrition);
+//             //console.log(data.results[0].thumbnail_url);
+//             // console.log(data.results[2].original_video_url);
 
-            for (var i = 0; i < data.results.length; i++) {
-                var recipeCard = `
-            <div class="card column is-2">
-                <div class="card-image">
-                    <figure class="image">
-                    <a><img src="${data.results[i].thumbnail_url}" alt="Placeholder image">
-                    </a>
-                    </figure>
-                    <div class="card-content">
-                    <div class="media-content">
-                        <a><p class="title is-6">${data.results[i].name}</p>
-                        </a>
-                    </div>
-                    </div>
-                </div>
-                </div>`
-                bodyEl.append(recipeCard);
-            }
-        })
-        .catch(err => console.error(err));
-}
+//             for (var i = 0; i < data.results.length; i++) {
+//                 var recipeCard = `
+//             <div class="card column is-2">
+//                 <div class="card-image">
+//                     <figure class="image">
+//                     <a><img src="${data.results[i].thumbnail_url}" alt="Placeholder image">
+//                     </a>
+//                     </figure>
+//                     <div class="card-content">
+//                     <div class="media-content">
+//                         <a><p class="title is-6">${data.results[i].name}</p>
+//                         </a>
+//                     </div>
+//                     </div>
+//                 </div>
+//                 </div>`
+//                 bodyEl.append(recipeCard);
+//             }
+//         })
+//         .catch(err => console.error(err));
+// }

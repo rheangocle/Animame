@@ -19,7 +19,7 @@
     <nav class="navbar is-warning is-fixed-top">
         <div class="navbar-brand">
             <a class="navbar-item" href="https://bulma.io">
-                <img src="Logo link here" alt="LOGO" width="112" height="28">
+                <img src="./assets/images/happy-onigiri.png" alt="LOGO" width="30" height="50">
             </a>
         </div>
 
@@ -38,28 +38,27 @@
     </nav>
 
     <!-- Anime info section -->
-    <section class="hero is-light is-halfheight ">
+    <section class="hero is-dark is-halfheight ">
 
-        <div class="hero-body is-justify-content-space-evenly">
+        <div class="columns hero-body">
 
             <!-- Copy everything from inside  -->
-            <div class="block anime-block">
+            <div class="column anime-block is-one-fifth-desktop">
                 <img id="poster" class="poster-image" alt="">
                 </img>
             </div>
 
-            <div class="block anime-block" id="description">
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laudantium enim minus, doloremque, numquam
-                soluta
-                quibusdam nulla, quo quam architecto esse fugiat ab beatae a iste est illo expedita illum veniam.
+            <div class="column anime-block summary-block is-three-fifths-desktop" id="description">
             </div>
 
-            <div class="block anime-block">
-                <h3 id="title-english"></h3>
-                <h3 id="title-jp"></h3>
-                <p id="age-rating"></p>
-                <p id="user-rating"></p>
-                <p id="anime-id" hidden></p>
+            <div class="column anime-block is-one-fifth-desktop">
+                <ul>
+                    <li class="title is-5" id="title-english"></li>
+                    <li class='title is-5' id="title-jp"></li>
+                    <li id="age-rating"></li>
+                    <li id="user-rating"></li>
+                    <li id="anime-id" hidden></li>
+                </ul>
             </div>
 
         </div>
