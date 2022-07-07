@@ -15,7 +15,7 @@ var searchAnime = function () {
         })
         .then(function (data) {
             console.log(data);
-            for (i = 0, i < 3, i++) {
+            for (i = 0; i < 3; i++) {
                 var searchTitleEnglish = document.createElement('h3');
                 searchTitleEnglish.textContent = data.data[i].attributes.titles.en;
                 // console.log(searchTitleEnglish);
