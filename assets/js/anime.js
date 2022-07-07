@@ -1,9 +1,18 @@
+// global variable declaration
+var englishTitleField = document.getElementById('title-english');
+var japaneseTitleField = document.getElementById('title-jp');
+var ageRatingField = document.getElementById('age-rating');
+var userRatingField = document.getElementById('user-rating');
+var descriptionField = document.getElementById('description');
+var posterImageField = document.getElementById('poster');
+var idField = document.getElementById("anime-id");
+
 // anime search feature
 // searchField is a dummy variable. assign the real one later
-searchField.addEventListener("keydown", searchAnime);
+// searchField.addEventListener("keydown", searchAnime);
 var searchAnime = function () {
     // user input from a search field
-    var search = document.getElementById("search-input");
+    var search = "spy x family";
     // replacing spaces with %20 for the api call
     var title = search.replace(/ /g, "%20");
     // fetching data from the api, limiting to top 3 options during the search
@@ -15,28 +24,31 @@ var searchAnime = function () {
         })
         .then(function (data) {
             console.log(data);
-            for (i = 0; i < 3; i++) {
-                var searchTitleEnglish = document.createElement('h3');
-                searchTitleEnglish.textContent = data.data[i].attributes.titles.en;
-                // console.log(searchTitleEnglish);
-                searchContainer.append(searchTitleEnglish);
-                var searchUserRating = document.createElement('p');
-                searchUserRating.textContent = data.data[i].attributes.averageRating;
-                // console.log(searchUserRating);
-                searchContainer.append(searchUserRating);
-                var searchPosterImage = document.createElement('a');
-                searchPosterImage.textContent = data.data[i].attributes.posterImage.original;
-                // console.log(searchPosterImage);
-            }
+            // for (i = 0; i < 3; i++) {
+            //     var searchTitleEnglish = document.createElement('h3');
+            //     searchTitleEnglish.textContent = data.data[i].attributes.titles.en;
+            //     console.log(searchTitleEnglish);
+            //     searchContainer.append(searchTitleEnglish);
+            //     var searchUserRating = document.createElement('p');
+            //     searchUserRating.textContent = data.data[i].attributes.averageRating;
+            //     console.log(searchUserRating);
+            //     searchContainer.append(searchUserRating);
+            //     var searchPosterImage = document.createElement('a');
+            //     searchPosterImage.textContent = data.data[i].attributes.posterImage.original;
+            //     console.log(searchPosterImage);
+            // }
+            idField.textContent = data.data[0].id;
+            changePages();
         });
 }
-
+searchAnime();
 
 // animeButton is a dummy variable. assign the real one later
-animeButton.addEventListener("click", changePages);
+// animeButton.addEventListener("click", changePages);
 
 var changePages = function () {
-    var id = document.getElementById("anime-id");
+    console.log(idField.textContent);
+    var id = idField.textContent;
     // fetching data from the api
     fetch(
         'https://kitsu.io/api/edge/anime/' + id
@@ -46,34 +58,33 @@ var changePages = function () {
         })
         // putting anime info onto the page
         .then(function (data) {
-            // console.log(data);
+            console.log(data);
             var titleEnglish = data.data.attributes.titles.en;
             // placeholder variables used, make sure to define them based on anime.html
-            englishTitleField.textContent = titleEnglish;
+            englishTitleField.textContent = "English Title: " + titleEnglish;
             // console.log(titleEnglish);
             var titleJP = data.data.attributes.titles.en_jp;
-            japaneseTitleField.textContent = titleJP;
+            japaneseTitleField.textContent = "Japanese Title: " + titleJP;
             // console.log(titleJP);
             var ageRating = data.data.attributes.ageRating + ' - ' + data.data.attributes.ageRatingGuide;
-            ageRatingField.textContent = ageRating;
+            ageRatingField.textContent = "Age Rating: " + ageRating;
             // console.log(ageRating);
             var userRating = data.data.attributes.averageRating;
-            userRatingField.textContent = userRating;
+            userRatingField.textContent = "Average User Rating: " + userRating;
             // console.log(userRating);
             var description = data.data.attributes.description;
             descriptionField.textContent = description;
             // console.log(description);
             var posterImage = data.data.attributes.posterImage.original;
-            posterImageField.textContent = posterImage;
+            posterImageField.src = posterImage;
             // console.log(posterImage);
             var coverImage = data.data.attributes.coverImage.original;
             // console.log(coverImage);
         });
 }
 
-
 //Tasty API
-//this is for the search input to be plugged into the url 
+//this is for the search input to be plugged into the url
 var prefix
 
 //object of arrays ==> should this be converted into individual arrays for each show?
@@ -99,7 +110,7 @@ var foodArr = {
 var bodyEl = $('.columns');
 //jojo: 7158
 //
-//Fetching from Tasty 
+//Fetching from Tasty
 const options = {
     method: 'GET',
     headers: {

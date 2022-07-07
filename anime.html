@@ -2,70 +2,78 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-  <link rel="stylesheet" href="./assets/css/style.css">
-  <script src="https://code.jquery.com/jquery-3.5.1.min.js"
-    integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
-  <title>
-    <!-- insert anime name here -->
-  </title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"
+        integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+    <title>
+        <!-- insert anime name here -->
+    </title>
 </head>
 
 <body>
-  <!-- Header and navbar -->
-  <nav class="navbar is-warning is-fixed-top">
-    <div class="navbar-brand">
-      <a class="navbar-item" href="https://bulma.io">
-        <img src="Logo link here" alt="LOGO" width="112" height="28">
-      </a>
+    <!-- Header and navbar -->
+    <nav class="navbar is-warning is-fixed-top">
+        <div class="navbar-brand">
+            <a class="navbar-item" href="https://bulma.io">
+                <img src="Logo link here" alt="LOGO" width="112" height="28">
+            </a>
+        </div>
+
+        <div id="navbarExampleTransparentExample" class="navbar-menu">
+            <div class="navbar-start">
+                <h1 class="navbar-item title">
+                    Animame
+                </h1>
+            </div>
+            <div class="navbar-end">
+                <a class="navbar-item" href="">
+                    Anime
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Anime info section -->
+    <section class="hero is-light is-halfheight ">
+
+        <div class="hero-body is-justify-content-space-evenly">
+
+            <!-- Copy everything from inside  -->
+            <div class="block anime-block">
+                <img id="poster" class="poster-image" alt="">
+                </img>
+            </div>
+
+            <div class="block anime-block" id="description">
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laudantium enim minus, doloremque, numquam
+                soluta
+                quibusdam nulla, quo quam architecto esse fugiat ab beatae a iste est illo expedita illum veniam.
+            </div>
+
+            <div class="block anime-block">
+                <h3 id="title-english"></h3>
+                <h3 id="title-jp"></h3>
+                <p id="age-rating"></p>
+                <p id="user-rating"></p>
+                <p id="anime-id" hidden></p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Food card section -->
+    <div class="columns is-mobile is-multiline is-centered">
+        <!-- Food cards here -->
     </div>
 
-    <div id="navbarExampleTransparentExample" class="navbar-menu">
-      <div class="navbar-start">
-        <h1 class="navbar-item title">
-          Animame
-        </h1>
-      </div>
-      <div class="navbar-end">
-        <a class="navbar-item" href="">
-          Anime
-        </a>
-      </div>
-    </div>
-  </nav>
-
-  <!-- Anime info section -->
-  <section class="hero is-light is-halfheight ">
-
-    <div class="hero-body is-justify-content-space-evenly">
-
-      <!-- Copy everything from inside  -->
-      <div class="block anime-block">
-        <img class="poster-image" src="https://m.media-amazon.com/images/I/71aoeOhdNnL._AC_SY679_.jpg" alt="">
-        </img>
-      </div>
-
-      <div class="block anime-block">
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laudantium enim minus, doloremque, numquam soluta
-        quibusdam nulla, quo quam architecto esse fugiat ab beatae a iste est illo expedita illum veniam.
-      </div>
-
-      <div class="block anime-block">
-        This text is within a <strong>block</strong>.
-      </div>
-
-    </div>
-  </section>
-
-  <!-- Food card section -->
-  <div class="columns is-mobile is-multiline is-centered">
-    <!-- Food cards here -->
-  </div>
-
-  <script src="./script.js"></script>
+    <script src="./assets/js/script.js"></script>
+    <script src="./assets/js/anime.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 </body>
 
 </html>
