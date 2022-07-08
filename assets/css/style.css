@@ -14,6 +14,48 @@ body {
   perspective: 1600px;
 }
 
+.columns {
+  column-gap: 1.5rem;
+
+}
+
+img {
+  max-height: 250px;
+  max-width: 300px;
+}
+
+.recipe-header {
+  margin-top: 2rem;
+}
+
+.poster-image {
+  max-height: 100%;
+}
+
+.anime-block {
+  padding: 2rem;
+}
+
+.card {
+  border-radius: 10px;
+  box-shadow: 5px 5px 5px darkgray;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.card-image:hover {
+  opacity: .70;
+}
+
+li {
+  list-style-type: disc;
+}
+
+.summary-block,
+li {
+  justify-content: flex-start;
+  text-align: left;
+}
 
 .carousel {
   position: absolute;
@@ -83,43 +125,6 @@ span {
   transform: rotateY(320deg) translateZ(860px);
 }
 
-.columns {
-  column-gap: 1.5rem;
-
-}
-
-img {
-  max-height: 250px;
-  max-width: 300px;
-}
-
-.poster-image {
-  max-height: 100%;
-}
-
-.anime-block {
-  padding: 2rem;
-}
-
-.card {
-  border-radius: 10px;
-  box-shadow: 5px 5px 5px darkgray;
-  margin-bottom: 2rem;
-}
-
-.card:hover {
-  opacity: .70;
-}
-
-li {
-  list-style-type: disc;
-}
-
-.summary-block,
-li {
-  justify-content: flex-start;
-  text-align: left;
-}
 
 @keyframes rotate360 {
   from {
