@@ -124,7 +124,7 @@ var foodArr = {
     foodWars: ['roast pork', 'risotto', 'gyoza', 'ramen', 'tempura don', 'steak don', 'gohan', 'kaarage', 'eggs benedict', 'fried rice', 'omelette', 'katsu curry', 'katsudon', 'okiakage', 'frittata', 'bento', 'pork curry', 'bourguignon', 'omurice', 'pineapple rice', 'shoyu ramen'],
 }
 
-var bodyEl = $('.columns');
+var recipeCardEl = $('.recipe-card');
 //jojo: 7158
 
 //Fetching from Tasty
@@ -166,7 +166,7 @@ for (var i = 0; i < foodArr.spyFamily.length; i++) {
                         </div>
                     </div>
                 </div>`
-                bodyEl.append(recipeCard);
+                recipeCardEl.append(recipeCard);
             }
         })
         .catch(err => console.error(err));

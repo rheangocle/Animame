@@ -136,7 +136,8 @@ span {
     transform: rotateY(-360deg);
   }
 }
-.column {
+
+/* .column {
   float: left;
   width: 25%;
   box-shadow: 5px 5px 5px darkgray;
@@ -145,8 +146,15 @@ span {
 
 .column:hover {
   opacity: .70;
+} */
+
+.row {
+  padding-top: 60px;
 }
 
-.row{
-padding-top: 60px;
+
+.img-recipe-card,
+.ing-card,
+.cook-card {
+  margin: 3rem 2rem 1rem 2rem;
 }
