@@ -39,7 +39,7 @@ var searchAnime = function () {
             //     console.log(searchPosterImage);
             // }
             idField.textContent = data.data[0].id;
-            changePages();
+            populatePage();
         });
 }
 searchAnime();
@@ -47,10 +47,10 @@ searchAnime();
 // animeButton is a dummy variable. assign the real one later
 // animeButton.addEventListener("click", changePages);
 
-var changePages = function () {
-    console.log(idField.textContent);
-    var id = idField.textContent;
+var populatePage = function () {
     // fetching data from the api
+    id = localStorage.getItem("id");
+    console.log(id);
     fetch(
         'https://kitsu.io/api/edge/anime/' + id
     )
