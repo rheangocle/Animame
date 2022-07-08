@@ -19,6 +19,11 @@ body {
 
 }
 
+img {
+  max-height: 250px;
+  max-width: 300px;
+}
+
 img .shade {
   max-height: 250px;
   max-width: 300px;
