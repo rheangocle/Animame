@@ -126,7 +126,7 @@ for (var i = 0; i < foodArr.spyFamily.length; i++) {
         // fetch(`https://tasty.p.rapidapi.com/recipes/list?from=0&size=20&q=${foodArr.spyFamily[1]}`, options)
         .then(response => response.json())
         .then(data => {
-            //console.log(data);
+            console.log(data);
             //console.log(data.results[0].name);
             // console.log(data.results[2].instructions);
             // console.log(data.results[2].nutrition);
@@ -135,10 +135,10 @@ for (var i = 0; i < foodArr.spyFamily.length; i++) {
 
             for (var i = 0; i < data.results.length; i++) {
                 var recipeCard = `
-                <div class="card column is-2">
+                <div class="card column is-2 recipe-card">
                     <div class="card-image">
                         <figure class="image">
-                        <a><img src="${data.results[i].thumbnail_url}" alt="Placeholder image">
+                        <a id='recipe-img-link'><img data-id="${data.results[i].id}" src="${data.results[i].thumbnail_url}" alt="Placeholder image">
                         </a>
                         </figure>
                         <div class="card-content">
