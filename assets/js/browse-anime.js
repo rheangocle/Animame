@@ -41,4 +41,18 @@ var browseAnime = function () {
         });
 }
 
+var cardsReal = browseAnimeCards.children();
+var id;
+function swapPage(event) {
+    event.preventDefault();
+    var btnClicked = $(this);
+    id = btnClicked.attr('id');
+    console.log(id);
+    localStorage.setItem("id", id);
+    var redirectUrl = './anime.html';
+    document.location = redirectUrl;
+}
+
+cardsReal.on('click', swapPage);
+
 browseAnime();
