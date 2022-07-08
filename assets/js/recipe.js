@@ -8,7 +8,9 @@
 //   }
 // }
 
-var instructionsEl = document.querySelector('.instructions')
+var cookInstructionsEl = $('.cooking-instructions');
+var recipeImageCardEl = $('.img-recipe-card');
+
 function getRecipe() {
   const options = {
     method: 'GET',
@@ -23,11 +25,23 @@ function getRecipe() {
     .then(response => response.json())
     .then(info => {
       console.log(info);
+
       for (var i = 0; i < info.instructions.length; i++) {
-        var prepStep = `<li>${info.instructions[i].display_text}</li>`;
-        instructionsEl.append(prepStep);
+
+        var prepStep =
+          `<p> ${info.instructions[i].position}. ${info.instructions[i].display_text} </p>`;
+        console.log(prepStep)
+        // var ingredientsList =
+        //   `<p> ${info.sections[0]}. ${info.instructions[i].display_text} </p>`;
+        cookInstructionsEl.append(prepStep);
       }
+      var recipeImage = `
+        <div class="card-image">
+          <img class="recipe-image" src="${info.thumbnail_url}" alt="image of ${info.name}">
+        </div > `
+      recipeImageCardEl.append(recipeImage);
     })
+
     .catch(err => console.error(err));
 }
 
