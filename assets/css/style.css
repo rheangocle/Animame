@@ -130,3 +130,17 @@ li {
     transform: rotateY(-360deg);
   }
 }
+.column {
+  float: left;
+  width: 25%;
+  box-shadow: 5px 5px 5px darkgray;
+  padding: 50px;
+}
+
+.column:hover {
+  opacity: .70;
+}
+
+.row{
+padding-top: 60px;
+}
