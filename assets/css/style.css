@@ -19,7 +19,7 @@ body {
 
 }
 
-img {
+img .shade {
   max-height: 250px;
   max-width: 300px;
   box-shadow: 5px 5px 10px gray;
