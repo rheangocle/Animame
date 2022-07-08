@@ -6,6 +6,7 @@ var userRatingField = document.getElementById('user-rating');
 var descriptionField = document.getElementById('description');
 var posterImageField = document.getElementById('poster');
 var idField = document.getElementById("anime-id");
+var pageTitleField = document.getElementById("anime-title");
 
 // anime search feature
 // searchField is a dummy variable. assign the real one later
@@ -61,13 +62,29 @@ var changePages = function () {
             console.log(data);
             var titleEnglish = data.data.attributes.titles.en;
             // placeholder variables used, make sure to define them based on anime.html
-            englishTitleField.textContent = "English Title: " + titleEnglish;
             // console.log(titleEnglish);
             var titleJP = data.data.attributes.titles.en_jp;
-            japaneseTitleField.textContent = "Japanese Title: " + titleJP;
+            if (titleEnglish == undefined) {
+                japaneseTitleField.textContent = "Japanese Title: " + titleJP;
+                englishTitleField.textContent = "English Title: " + titleJP;
+                pageTitleField.textContent = "Animame | " + titleJP;
+            } else if (titleJP == undefined) {
+                japaneseTitleField.textContent = "Japanese Title: " + titleEnglish;
+                englishTitleField.textContent = "English Title: " + titleEnglish;
+                pageTitleField.textContent = "Animame | " + titleEnglish;
+            } else {
+                japaneseTitleField.textContent = "Japanese Title: " + titleJP;
+                englishTitleField.textContent = "English Title: " + titleEnglish;
+                pageTitleField.textContent = "Animame | " + titleEnglish;
+            }
             // console.log(titleJP);
-            var ageRating = data.data.attributes.ageRating + ' - ' + data.data.attributes.ageRatingGuide;
-            ageRatingField.textContent = "Age Rating: " + ageRating;
+            var ageRating = data.data.attributes.ageRating;
+            var ageRatingGuide = data.data.attributes.ageRatingGuide;
+            if (ageRatingGuide == null) {
+                ageRatingField.textContent = "Age Rating: " + ageRating;
+            } else {
+                ageRatingField.textContent = "Age Rating: " + ageRating + " - " + ageRatingGuide;
+            }
             // console.log(ageRating);
             var userRating = data.data.attributes.averageRating;
             userRatingField.textContent = "Average User Rating: " + userRating;
