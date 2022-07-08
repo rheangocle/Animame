@@ -8,8 +8,9 @@
 //   }
 // }
 
-var cookInstructionsEl = $('.cooking-instructions');
+var cookInstructionsEl = $('#cooking-intructions');
 var recipeImageCardEl = $('.img-recipe-card');
+var ingredientsListEl = $('.ingredients-list')
 
 function getRecipe() {
   const options = {
@@ -29,16 +30,26 @@ function getRecipe() {
       for (var i = 0; i < info.instructions.length; i++) {
 
         var prepStep =
-          `<p> ${info.instructions[i].position}. ${info.instructions[i].display_text} </p>`;
-        console.log(prepStep)
-        // var ingredientsList =
-        //   `<p> ${info.sections[0]}. ${info.instructions[i].display_text} </p>`;
+          `<li class='recipe-list-items'> ${info.instructions[i].position}. ${info.instructions[i].display_text} </li>`;
         cookInstructionsEl.append(prepStep);
       }
+
+      for (var i = 0; i < info.sections.length; i++) {
+        var ingredientsSection = `
+    <div class="title is-6">${info.sections[i].name}
+    </div>`
+        ingredientsListEl.append(ingredientsSection);
+        for (var j = 0; j < info.sections[i].components.length; j++) {
+          var ingredientsItems = `
+        <li>${info.sections[i].components[j].raw_text}</li>`
+          ingredientsListEl.append(ingredientsItems);
+        }
+      }
+
       var recipeImage = `
-        <div class="card-image">
-          <img class="recipe-image" src="${info.thumbnail_url}" alt="image of ${info.name}">
-        </div > `
+      <div class="card-image">
+        <img class="recipe-image" src="${info.thumbnail_url}" alt="image of ${info.name}">
+      </div > `
       recipeImageCardEl.append(recipeImage);
     })
 
