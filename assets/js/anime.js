@@ -96,7 +96,7 @@ var foodArr = {
     pokemon: ['boiled egg', 'coconut milk', 'curry', 'instant noodles', 'lava cookie', 'rice balls', 'stew', 'poffins', 'muffins', 'mini cake', 'masaladas', 'ketchup'],
     onePiece: ['boiled chicken', 'seafood pasta', 'lobster', 'sashimi', 'seafood risotto', 'takoyaki', 'fried rice', 'seafood fried rice', 'roz bel laban', 'bread', 'lasagna', 'cotton candy', 'chocolate', 'ice cream', 'donuts', 'manju', 'tarts', 'croquembouche', 'biscuits', 'chiffon cake', 'spongecake', 'mochi', 'shiruko', 'semla', 'dango'],
     attackOnTitan: ['omelette', 'hamburger steak', 'baked potato', 'chicken okonomiyaki', 'strawberry bread', 'stew'],
-    jujusuKaisen: ['crepe', 'nabe', 'rice ball', 'soy beans', 'sandwich', 'chicken meatballs'],
+    jujutsuKaisen: ['crepe', 'nabe', 'rice ball', 'soy beans', 'sandwich', 'chicken meatballs'],
     myHero: ['tart', 'truffles', 'fried ice cream', 'fries', 'katsudon', 'macarons', 'spicy kaarage', 'mapo tofu'],
     fairyTail: ['gyoza', 'tiny sausage', 'tempura', 'maki', 'stir fried veggies', 'fish', 'fish pizza', 'bento'],
     jojo: ['caprese salad', 'lamb chops', 'pudding', 'katsu', 'squid ink spaghetti', 'vento aureo'],
@@ -109,7 +109,7 @@ var foodArr = {
 
 var bodyEl = $('.columns');
 //jojo: 7158
-//
+
 //Fetching from Tasty
 const options = {
     method: 'GET',
@@ -120,37 +120,37 @@ const options = {
 };
 
 //q=food name
-// for (var i = 0; i < foodArr.spyFamily.length; i++) {
-//     fetch(`https://tasty.p.rapidapi.com/recipes/list?from=0&size=2&q=${foodArr.spyFamily[i]}`, options)
+for (var i = 0; i < foodArr.spyFamily.length; i++) {
+    fetch(`https://tasty.p.rapidapi.com/recipes/list?from=0&size=2&q=${foodArr.jujutsuKaisen[i]}`, options)
 
-//         // fetch(`https://tasty.p.rapidapi.com/recipes/list?from=0&size=20&q=${foodArr.spyFamily[1]}`, options)
-//         .then(response => response.json())
-//         .then(data => {
-//             //console.log(data);
-//             //console.log(data.results[0].name);
-//             // console.log(data.results[2].instructions);
-//             // console.log(data.results[2].nutrition);
-//             //console.log(data.results[0].thumbnail_url);
-//             // console.log(data.results[2].original_video_url);
+        // fetch(`https://tasty.p.rapidapi.com/recipes/list?from=0&size=20&q=${foodArr.spyFamily[1]}`, options)
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            //console.log(data.results[0].name);
+            // console.log(data.results[2].instructions);
+            // console.log(data.results[2].nutrition);
+            //console.log(data.results[0].thumbnail_url);
+            // console.log(data.results[2].original_video_url);
 
-//             for (var i = 0; i < data.results.length; i++) {
-//                 var recipeCard = `
-//             <div class="card column is-2">
-//                 <div class="card-image">
-//                     <figure class="image">
-//                     <a><img src="${data.results[i].thumbnail_url}" alt="Placeholder image">
-//                     </a>
-//                     </figure>
-//                     <div class="card-content">
-//                     <div class="media-content">
-//                         <a><p class="title is-6">${data.results[i].name}</p>
-//                         </a>
-//                     </div>
-//                     </div>
-//                 </div>
-//                 </div>`
-//                 bodyEl.append(recipeCard);
-//             }
-//         })
-//         .catch(err => console.error(err));
-// }
+            for (var i = 0; i < data.results.length; i++) {
+                var recipeCard = `
+                <div class="card column is-2 recipe-card">
+                    <div class="card-image">
+                        <figure class="image">
+                        <a id='recipe-img-link'><img data-id="${data.results[i].id}" src="${data.results[i].thumbnail_url}" alt="Placeholder image">
+                        </a>
+                        </figure>
+                        <div class="card-content">
+                        <div class="media-content">
+                            <a><p class="title is-6">${data.results[i].name}</p>
+                            </a>
+                        </div>
+                        </div>
+                    </div>
+                </div>`
+                bodyEl.append(recipeCard);
+            }
+        })
+        .catch(err => console.error(err));
+}
