@@ -163,3 +163,7 @@ span {
 .cook-card {
   margin: 3rem 2rem 1rem 2rem;
 }
+
+.recipe-list-items {
+  list-style-type: none;
+}
