@@ -102,7 +102,7 @@ var populatePage = function () {
 
 //Tasty API
 //this is for the search input to be plugged into the url
-var prefix
+var qValue
 
 //object of arrays ==> should this be converted into individual arrays for each show?
 var foodArr = {
@@ -152,14 +152,14 @@ for (var i = 0; i < foodArr.spyFamily.length; i++) {
 
             for (var i = 0; i < data.results.length; i++) {
                 var recipeCard = `
-                <div class="card column is-2 recipe-card">
+                <div class="card column is-2-widescreen is-2-desktop is-8-mobile is-3-tablet recipe-card">
                     <div class="card-image">
                         <figure class="image">
                         <a id='recipe-img-link'><img data-id="${data.results[i].id}" src="${data.results[i].thumbnail_url}" alt="Placeholder image">
                         </a>
                         </figure>
-                        <div class="card-content">
-                        <div class="media-content">
+                        <div class="card-header-title">
+                        <div class="card-title">
                             <a><p class="title is-6">${data.results[i].name}</p>
                             </a>
                         </div>
