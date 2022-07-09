@@ -163,3 +163,14 @@ span {
 .cook-card {
   margin: 3rem 2rem 1rem 2rem;
 }
+
+.anime-browse-container {
+  margin-top: 80px;
+  column-gap: 2rem;
+
+}
+
+.anime-browse-img {
+  max-width: 350px;
+  height: 230px;
+}
