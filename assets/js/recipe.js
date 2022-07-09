@@ -22,6 +22,11 @@ var foodArr = {
   foodWars: ['roast pork', 'risotto', 'gyoza', 'ramen', 'tempura don', 'steak don', 'gohan', 'kaarage', 'eggs benedict', 'fried rice', 'omelette', 'katsu curry', 'katsudon', 'okiakage', 'frittata', 'bento', 'pork curry', 'bourguignon', 'omurice', 'pineapple rice', 'shoyu ramen'],
 }
 
+/*
+AOT: 7442 attack-on-titan
+onepunchman: 10740
+*/
+
 var recipeCardEl = $('.recipe-card');
 //jojo: 7158
 

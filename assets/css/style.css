@@ -38,7 +38,7 @@ img .shade {
 }
 
 .anime-block {
-  padding: 2rem;
+  margin-top: 50px;
 }
 
 .card {
@@ -58,7 +58,6 @@ li {
 
 .summary-block,
 li {
-  justify-content: flex-start;
   text-align: left;
 }
 
