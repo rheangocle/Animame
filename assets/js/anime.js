@@ -123,10 +123,6 @@ var foodArr = {
     foodWars: ['roast pork', 'risotto', 'gyoza', 'ramen', 'tempura don', 'steak don', 'gohan', 'kaarage', 'eggs benedict', 'fried rice', 'omelette', 'katsu curry', 'katsudon', 'okiakage', 'frittata', 'bento', 'pork curry', 'bourguignon', 'omurice', 'pineapple rice', 'shoyu ramen'],
 }
 
-/*
-AOT: 7442 attack-on-titan
-onepunchman: 10740
-*/
 
 var recipeCardEl = $('.recipe-card');
 
@@ -164,7 +160,7 @@ function getFoodList() {
 
                 for (var i = 0; i < data.results.length; i++) {
                     var recipeCard = `
-                  <div class="card column is-2-widescreen is-2-desktop is-8-mobile is-3-tablet recipe-card">
+                  <div class="card column is-2-widescreen is-2-desktop is-8-mobile is-3-tablet recipe-card-cont">
                       <div class="card-image">
                           <figure class="image">
                           <a id='recipe-img-link'><img data-id="${data.results[i].id}" src="${data.results[i].thumbnail_url}" alt="Placeholder image">
