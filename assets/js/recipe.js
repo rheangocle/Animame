@@ -21,7 +21,7 @@ function getRecipe() {
   };
 
   // fetch(`https://tasty.p.rapidapi.com/recipes/get-more-info?id=${id}`, options)
-  fetch(`https://tasty.p.rapidapi.com/recipes/get-more-info?id=8190`, options)
+  fetch(`https://tasty.p.rapidapi.com/recipes/get-more-info?id=810`, options)
     .then(response => response.json())
     .then(info => {
       console.log(info);
@@ -35,7 +35,7 @@ function getRecipe() {
 
       for (var i = 0; i < info.sections.length; i++) {
         var ingredientsSection = `
-    <div class="title is-6">${info.sections[i].name}
+    <div class="title is-6 ">${info.sections[i].name}
     </div>`
         ingredientsListEl.append(ingredientsSection);
         for (var j = 0; j < info.sections[i].components.length; j++) {
@@ -46,7 +46,7 @@ function getRecipe() {
       }
 
       var recipeImage = `
-      <div class="card-image">
+      <div class="card-image is-6-desktop">
         <img class="recipe-image" src="${info.thumbnail_url}" alt="image of ${info.name}">
       </div > `
       recipeImageCardEl.append(recipeImage);
