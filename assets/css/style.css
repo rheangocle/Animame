@@ -1,6 +1,5 @@
 body {
   margin: 0;
-  background: lightgray;
   text-align: center;
   font-family: sans-serif;
   color: #fefefe;
@@ -39,7 +38,7 @@ img .shade {
 }
 
 .anime-block {
-  padding: 2rem;
+  margin-top: 50px;
 }
 
 .card {
@@ -49,7 +48,7 @@ img .shade {
   margin-bottom: 2rem;
 }
 
-.recipe-card:hover {
+.recipe-card-cont:hover {
   opacity: 0.70;
 }
 
@@ -59,7 +58,6 @@ li {
 
 .summary-block,
 li {
-  justify-content: flex-start;
   text-align: left;
 }
 
@@ -164,3 +162,24 @@ span {
   margin: 3rem 2rem 1rem 2rem;
 }
 
+.anime-browse-container {
+  margin-top: 100px;
+  margin-bottom: 50px;
+  padding: 10px;
+}
+
+.anime-browse-container:hover {
+  opacity: .70;
+  transform: scale(1.1);
+}
+
+.anime-browse-img {
+  max-width: 350px;
+  height: 220px;
+  border-radius: 10px;
+  box-shadow: 5px 5px 10px gray;
+}
+
+.more-button {
+  margin-top: 80px;
+}
