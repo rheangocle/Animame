@@ -5,7 +5,7 @@ body {
   color: #fefefe;
 }
 
-.container {
+.carousel-container {
   position: relative;
   width: 320px;
   left: 750px;
@@ -40,6 +40,8 @@ img .shade {
 .anime-block {
   margin-top: 50px;
 }
+
+/* can i make this ing-card??? v */
 
 .card {
   border-radius: 10px;
@@ -146,7 +148,6 @@ span {
   box-shadow: 5px 5px 5px darkgray;
   padding: 50px;
 }
-
 .column:hover {
   opacity: .70;
 } */
@@ -183,3 +184,4 @@ span {
 .more-button {
   margin-top: 80px;
 }
+
