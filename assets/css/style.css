@@ -63,6 +63,14 @@ li {
   list-style-type: none;
 }
 
+.recipe-card-top {
+  padding-top: 50px
+}
+
+.recipe-image {
+  transform: scale(1.3);
+}
+
 .summary-block,
 li {
   text-align: left;
