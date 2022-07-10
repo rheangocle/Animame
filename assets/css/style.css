@@ -54,8 +54,13 @@ img .shade {
   opacity: 0.70;
 }
 
+
 li {
   list-style-type: disc;
+}
+
+.recipe-list-items {
+  list-style-type: none;
 }
 
 .summary-block,
@@ -184,4 +189,3 @@ span {
 .more-button {
   margin-top: 80px;
 }
-
