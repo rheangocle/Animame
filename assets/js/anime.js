@@ -104,7 +104,7 @@ var populatePage = function () {
 //Tasty API
 
 //object of arrays ==> should this be converted into individual arrays for each show?
-var foodArr = {
+var foodObj = {
     spyFamily: ['butter cookies', 'strawberry shortcake', 'omurice', 'marinade', 'nut pancake', 'parfait', 'bloody orange juice', 'ice cocoa', 'stew'],
     demonSlayer: ['tempura', 'bento box', 'onigiri', 'udon', 'gyunabe', 'miso', 'kabayaki', 'sake', 'daikon', 'konpeito'],
     naruto: ['ramen', 'dango', 'yakiniku', 'curry', 'fish on a stick', 'onigiri', 'bento', 'fried rice'],
@@ -142,13 +142,18 @@ function camelize(str) {
 };
 
 //camelize('jujutsu kaisen');
-//console.log(foodArr[camelize('jujutsu kaisen')]);
+//console.log(foodObj[camelize('jujutsu kaisen')]);
 //q=food name
 function getFoodList() {
-    for (var i = 0; i < foodArr[camelize('jujutsu kaisen')].length; i++) {
-        fetch(`https://tasty.p.rapidapi.com/recipes/list?from=0&size=2&q=${foodArr[camelize('jujutsu kaisen')][i]}`, options)
+    if (!foodObj.hasOwnProperty(camelize('pokemon go'))) {
+        $('.recipe-header').text('Sorry, no recipes for this anime.');
+        return;
+    }
 
-            // fetch(`https://tasty.p.rapidapi.com/recipes/list?from=0&size=20&q=${foodArr.spyFamily[1]}`, options)
+    for (var i = 0; i < foodObj[camelize('jujutsu kaisen')].length; i++) {
+        fetch(`https://tasty.p.rapidapi.com/recipes/list?from=0&size=2&q=${foodObj[camelize('jujutsu kaisen')][i]}`, options)
+
+            // fetch(`https://tasty.p.rapidapi.com/recipes/list?from=0&size=20&q=${foodObj.spyFamily[1]}`, options)
             .then(response => response.json())
             .then(data => {
                 console.log(data);
