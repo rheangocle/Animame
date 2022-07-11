@@ -10,8 +10,6 @@ var pageTitleField = document.getElementById("anime-title");
 
 
 // anime search feature
-// searchField is a dummy variable. assign the real one later
-// searchField.addEventListener("keydown", searchAnime);
 var searchAnime = function () {
     // user input from a search field
     var search = "jujutsu kaisen";
@@ -50,7 +48,8 @@ searchAnime();
 
 var populatePage = function () {
     // fetching data from the api
-    id = localStorage.getItem("id");
+    var id = localStorage.getItem("id");
+    getFoodList(id);
     console.log(id);
     fetch(
         'https://kitsu.io/api/edge/anime/' + id
@@ -60,15 +59,14 @@ var populatePage = function () {
         })
         // putting anime info onto the page
         .then(function (data) {
-            console.log(data);
+            // setting anime attributs to the page
+            // setting the english title
             var titleEnglish = data.data.attributes.titles.en;
-            // placeholder variables used, make sure to define them based on anime.html
-
-            //Converting title to camel case and using it to generate food list
-            var camelizedName = camelize(titleEnglish);
-            getFoodList(camelizedName);
-
+            // setting the japanese title
+            // var camelizedName = camelize(titleEnglish);
+            // getFoodList(camelizedName);
             var titleJP = data.data.attributes.titles.en_jp;
+            // checking if either title is not listed and putting info on the page based on which titles exist
             if (titleEnglish == undefined) {
                 japaneseTitleField.textContent = "Japanese Title: " + titleJP;
                 englishTitleField.textContent = "English Title: " + titleJP;
@@ -82,7 +80,7 @@ var populatePage = function () {
                 englishTitleField.textContent = "English Title: " + titleEnglish;
                 pageTitleField.textContent = "Animame | " + titleEnglish;
             }
-            // console.log(titleJP);
+            // setting the age rating and checking if certain fields are empty before putting info on the page
             var ageRating = data.data.attributes.ageRating;
             var ageRatingGuide = data.data.attributes.ageRatingGuide;
             if (ageRatingGuide == null) {
@@ -90,18 +88,14 @@ var populatePage = function () {
             } else {
                 ageRatingField.textContent = "Age Rating: " + ageRating + " - " + ageRatingGuide;
             }
-            // console.log(ageRating);
+            // setting the average user rating and putting it on the page
             var userRating = data.data.attributes.averageRating;
             userRatingField.textContent = "Average User Rating: " + userRating;
-            // console.log(userRating);
+            // setting the description and poster image and putting them on the page
             var description = data.data.attributes.description;
             descriptionField.textContent = description;
-            // console.log(description);
             var posterImage = data.data.attributes.posterImage.original;
             posterImageField.src = posterImage;
-            // console.log(posterImage);
-            var coverImage = data.data.attributes.coverImage.original;
-            // console.log(coverImage);
         });
 }
 
@@ -109,23 +103,28 @@ var populatePage = function () {
 //Tasty API
 
 var foodObj = {
-    spyFamily: ['butter cookies', 'strawberry shortcake', 'omurice', 'marinade', 'nut pancake', 'parfait', 'bloody orange juice', 'ice cocoa', 'stew'],
-    demonSlayer: ['tempura', 'bento box', 'onigiri', 'udon', 'gyunabe', 'miso', 'kabayaki', 'sake', 'daikon', 'konpeito'],
-    naruto: ['ramen', 'dango', 'yakiniku', 'curry', 'fish on a stick', 'onigiri', 'bento', 'fried rice'],
-    dragonBall: ['beans', 'fruit', 'egg', 'pudding', 'takoyaki'],
-    pokemon: ['boiled egg', 'coconut milk', 'curry', 'instant noodles', 'lava cookie', 'rice balls', 'stew', 'poffins', 'muffins', 'mini cake', 'masaladas', 'ketchup'],
-    onePiece: ['boiled chicken', 'seafood pasta', 'lobster', 'sashimi', 'seafood risotto', 'takoyaki', 'fried rice', 'seafood fried rice', 'roz bel laban', 'bread', 'lasagna', 'cotton candy', 'chocolate', 'ice cream', 'donuts', 'manju', 'tarts', 'croquembouche', 'biscuits', 'chiffon cake', 'spongecake', 'mochi', 'shiruko', 'semla', 'dango'],
-    attackOnTitan: ['omelette', 'hamburger steak', 'baked potato', 'chicken okonomiyaki', 'strawberry bread', 'stew'],
-    jujutsuKaisen: ['crepe', 'nabe', 'rice ball', 'soy beans', 'sandwich', 'chicken meatballs'],
-    myHeroAcademia: ['tart', 'truffles', 'fried ice cream', 'fries', 'katsudon', 'macarons', 'spicy kaarage', 'mapo tofu'],
-    fairyTail: ['gyoza', 'tiny sausage', 'tempura', 'maki', 'stir fried veggies', 'fish', 'fish pizza', 'bento'],
-    jojo: ['caprese salad', 'lamb chops', 'pudding', 'katsu', 'squid ink spaghetti', 'vento aureo'],
-    onePunchMan: ['egg over rice', 'omurice', 'hot pot', 'soup'],
-    fruitsBasket: ['natto', 'soumen', 'soba', 'onigiri', 'sukiyaki', 'food spread'],
-    blackClover: ['potatoes', 'meatloaf', 'sandwich'],
-    hunterXHunter: ['hot dog', 'pizza', 'fried chicken', 'donuts', 'fries', 'pie', 'burgers', 'cream stew'],
-    foodWars: ['roast pork', 'risotto', 'gyoza', 'ramen', 'tempura don', 'steak don', 'gohan', 'kaarage', 'eggs benedict', 'fried rice', 'omelette', 'katsu curry', 'katsudon', 'okiakage', 'frittata', 'bento', 'pork curry', 'bourguignon', 'omurice', 'pineapple rice', 'shoyu ramen'],
-}
+    11: ['ramen', 'dango', 'yakiniku', 'curry', 'fish on a stick', 'onigiri', 'bento', 'fried rice'],
+    12: ['boiled chicken', 'seafood pasta', 'lobster', 'sashimi', 'seafood risotto', 'takoyaki', 'fried rice', 'seafood fried rice', 'roz bel laban', 'bread', 'lasagna', 'cotton candy', 'chocolate', 'ice cream', 'donuts', 'manju', 'tarts', 'croquembouche', 'biscuits', 'chiffon cake', 'spongecake', 'mochi', 'shiruko', 'semla', 'dango'],
+    99: ['natto', 'soumen', 'soba', 'onigiri', 'sukiyaki', 'food spread'],
+    176: ['cookie','buscuit','red bean bun','rice ball','shrimp tempura','rice',],
+    199: ['beans', 'fruit', 'egg', 'pudding', 'takoyaki'],
+    1376: ['cake','cookies','dessert','food','pie','pies','sweet','treat','ice cream','apple'],
+    4676: ['gyoza', 'tiny sausage', 'tempura', 'maki', 'stir fried veggies', 'fish', 'fish pizza', 'bento'],
+    6448: ['hot dog', 'pizza', 'fried chicken', 'donuts', 'fries', 'pie', 'burgers', 'cream stew'],
+    6452: ['boiled egg', 'coconut milk', 'curry', 'instant noodles', 'lava cookie', 'rice balls', 'stew', 'poffins', 'muffins', 'mini cake', 'masaladas', 'ketchup'],
+    7158: ['caprese salad', 'lamb chops', 'pudding', 'katsu', 'squid ink spaghetti', 'vento aureo'],
+    7442: ['omelette', 'hamburger steak', 'baked potato', 'chicken okonomiyaki', 'strawberry bread', 'stew'],
+    8699: ['meat pie','mushroom','pudding','grilled cheese','bison','apple pie','cider'],
+    9967: ['roast pork', 'risotto', 'gyoza', 'ramen', 'tempura don', 'steak don', 'gohan', 'kaarage', 'eggs benedict', 'fried rice', 'omelette', 'katsu curry', 'katsudon', 'okiakage', 'frittata', 'bento', 'pork curry', 'bourguignon', 'omurice', 'pineapple rice', 'shoyu ramen'],
+    10740: ['egg over rice', 'omurice', 'hot pot', 'soup'],
+    11469: ['tart', 'truffles', 'fried ice cream', 'fries', 'katsudon', 'macarons', 'spicy kaarage', 'mapo tofu'],
+    11614: ['pancakes','waffles','cake','katsu','bento','pizza','ramen','strawberry shortcake','sandwhich'],
+    12268: ['tart', 'truffles', 'fried ice cream', 'fries', 'katsudon', 'macarons', 'spicy kaarage', 'mapo tofu'],
+    13209: ['potatoes', 'meatloaf', 'sandwich'],
+    13881: ['tart', 'truffles', 'fried ice cream', 'fries', 'katsudon', 'macarons', 'spicy kaarage', 'mapo tofu'],
+    41370: ['tempura', 'bento box', 'onigiri', 'udon', 'gyunabe', 'miso', 'kabayaki', 'sake', 'daikon', 'konpeito'],
+    42765: ['crepe', 'nabe', 'rice ball', 'soy beans', 'sandwich', 'chicken meatballs'],
+    45398: ['butter cookies', 'strawberry shortcake', 'omurice', 'marinade', 'nut pancake', 'parfait', 'bloody orange juice', 'ice cocoa', 'stew'],}
 
 var recipeCardEl = $('.recipe-card');
 
@@ -139,16 +138,16 @@ const options = {
 };
 
 //Convert anime titles to camelcase
-function camelize(str) {
-    return str.replace(/(?:^\w|[A-Z]|\b\w)/g, function (word, index) {
-        return index === 0 ? word.toLowerCase() : word.toUpperCase();
-    }).replace(/\s+/g, '');
-};
+// function camelize(str) {
+//     return str.replace(/(?:^\w|[A-Z]|\b\w)/g, function (word, index) {
+//         return index === 0 ? word.toLowerCase() : word.toUpperCase();
+//     }).replace(/\s+/g, '');
+// };
 
 //Getting recipe card images for anime
 function getFoodList(anime) {
     if (!foodObj.hasOwnProperty(anime)) {
-        $('.recipe-header').text('Sorry, no recipes for this anime.');
+        $('.recipe-header').text('🍙 Sorry, no recipes for this anime. 🍙');
         return;
     } else {
         $('.recipe-header').text('Recipes: ');
@@ -167,13 +166,12 @@ function getFoodList(anime) {
                 // console.log(data.results[0].thumbnail_url);
                 // console.log(data.results[2].original_video_url);
                 var dataResults = data.results;
-                console.log(dataResults);
                 for (var i = 0; i < dataResults.length; i++) {
                     var recipeCard = `
                   <div class="card column is-2-widescreen is-2-desktop is-8-mobile is-3-tablet recipe-card-cont">
                       <div class="card-image">
                           <figure class="image">
-                          <a id='recipe-img-link'><img data-id="${data.results[i].id}" src="${data.results[i].thumbnail_url}" alt="Placeholder image">
+                          <a><img id="recipe-img-link" data-id="${data.results[i].id}" src="${data.results[i].thumbnail_url}" alt="Placeholder image">
                           </a>
                           </figure>
                           <div class="card-header-title">
@@ -186,24 +184,22 @@ function getFoodList(anime) {
                   </div>`
                     recipeCardEl.append(recipeCard);
                 }
+                var recipeLink = $("#recipe-img-link");
+                recipeLink.on('click', cardClickHandler);
             })
             .catch(err => console.error(err));
     }
 }
 
-var recipeLink = $("#recipe-img-link");
-console.log(recipeLink);
-var cardClickHandler = function (e) {
-    var recipeIdAttr = e.target.attr('data-id');
+var cardClickHandler = function () {
+    var btnClicked = $(this);
     console.log(recipeIdAttr);
+    var recipeIdAttr = btnClicked.attr('data-id')
     localStorage.setItem("recipe-id", recipeIdAttr);
     if (recipeIdAttr) {
         getRecipe(recipeIdAttr);
     }
-    var redirectUrl = './recipe.html';
-    document.location = redirectUrl;
+    document.location = './recipe.html';
 }
 
-recipeLink.addEventListener('click', cardClickHandler);
-
-getFoodList()
+getFoodList();
