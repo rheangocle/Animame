@@ -1,10 +1,15 @@
 var recipeLink = $("#recipe-img-link");
+
+console.log(recipeLink);
 var cardClickHandler = function (e) {
   var recipeIdAttr = e.target.attr('data-id');
-
+  console.log(recipeIdAttr);
+  localStorage.setItem("recipe-id", recipeIdAttr);
   if (recipeIdAttr) {
     getRecipe(recipeIdAttr);
   }
+  var redirectUrl = './recipe.html';
+  document.location = redirectUrl;
 }
 
 var cookInstructionsEl = $('#cooking-intructions');
@@ -12,6 +17,7 @@ var recipeImageCardEl = $('.img-recipe-card');
 var ingredientsListEl = $('.ingredients-list')
 
 function getRecipe() {
+  var recipeId = localStorage.getItem("recipe-id");
   const options = {
     method: 'GET',
     headers: {
@@ -21,7 +27,7 @@ function getRecipe() {
   };
 
   // fetch(`https://tasty.p.rapidapi.com/recipes/get-more-info?id=${id}`, options)
-  fetch(`https://tasty.p.rapidapi.com/recipes/get-more-info?id=810`, options)
+  fetch(`https://tasty.p.rapidapi.com/recipes/get-more-info?id=${recipeId}`, options)
     .then(response => response.json())
     .then(info => {
       console.log(info);
@@ -56,4 +62,5 @@ function getRecipe() {
 }
 
 getRecipe()
-recipeLink.click(cardClickHandler)
+
+recipeLink.click(cardClickHandler);
