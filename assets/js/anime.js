@@ -142,7 +142,7 @@ const options = {
 //Getting recipe card images for anime
 function getFoodList(anime) {
     if (!foodObj.hasOwnProperty(anime)) {
-        $('.recipe-header').text('Sorry, no recipes for this anime.');
+        $('.recipe-header').text('🍙 Sorry, no recipes for this anime. 🍙');
         return;
     } else {
         $('.recipe-header').text('Recipes: ');
