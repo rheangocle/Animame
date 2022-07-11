@@ -10,8 +10,6 @@ var pageTitleField = document.getElementById("anime-title");
 
 
 // anime search feature
-// searchField is a dummy variable. assign the real one later
-// searchField.addEventListener("keydown", searchAnime);
 var searchAnime = function () {
     // user input from a search field
     var search = "jujutsu kaisen";
@@ -61,14 +59,14 @@ var populatePage = function () {
         })
         // putting anime info onto the page
         .then(function (data) {
-            console.log(data);
+            // setting anime attributs to the page
+            // setting the english title
             var titleEnglish = data.data.attributes.titles.en;
-            // placeholder variables used, make sure to define them based on anime.html
-
+            // setting the japanese title
             // var camelizedName = camelize(titleEnglish);
             // getFoodList(camelizedName);
-
             var titleJP = data.data.attributes.titles.en_jp;
+            // checking if either title is not listed and putting info on the page based on which titles exist
             if (titleEnglish == undefined) {
                 japaneseTitleField.textContent = "Japanese Title: " + titleJP;
                 englishTitleField.textContent = "English Title: " + titleJP;
@@ -82,7 +80,7 @@ var populatePage = function () {
                 englishTitleField.textContent = "English Title: " + titleEnglish;
                 pageTitleField.textContent = "Animame | " + titleEnglish;
             }
-            // console.log(titleJP);
+            // setting the age rating and checking if certain fields are empty before putting info on the page
             var ageRating = data.data.attributes.ageRating;
             var ageRatingGuide = data.data.attributes.ageRatingGuide;
             if (ageRatingGuide == null) {
@@ -90,18 +88,14 @@ var populatePage = function () {
             } else {
                 ageRatingField.textContent = "Age Rating: " + ageRating + " - " + ageRatingGuide;
             }
-            // console.log(ageRating);
+            // setting the average user rating and putting it on the page
             var userRating = data.data.attributes.averageRating;
             userRatingField.textContent = "Average User Rating: " + userRating;
-            // console.log(userRating);
+            // setting the description and poster image and putting them on the page
             var description = data.data.attributes.description;
             descriptionField.textContent = description;
-            // console.log(description);
             var posterImage = data.data.attributes.posterImage.original;
             posterImageField.src = posterImage;
-            // console.log(posterImage);
-            var coverImage = data.data.attributes.coverImage.original;
-            // console.log(coverImage);
         });
 }
 
@@ -173,7 +167,7 @@ function getFoodList(anime) {
                   <div class="card column is-2-widescreen is-2-desktop is-8-mobile is-3-tablet recipe-card-cont">
                       <div class="card-image">
                           <figure class="image">
-                          <a id='recipe-img-link'><img data-id="${data.results[i].id}" src="${data.results[i].thumbnail_url}" alt="Placeholder image">
+                          <a><img id="recipe-img-link" data-id="${data.results[i].id}" src="${data.results[i].thumbnail_url}" alt="Placeholder image">
                           </a>
                           </figure>
                           <div class="card-header-title">
@@ -186,13 +180,13 @@ function getFoodList(anime) {
                   </div>`
                     recipeCardEl.append(recipeCard);
                 }
+                var recipeLink = $("#recipe-img-link");
+                recipeLink.addEventListener('click', cardClickHandler);
             })
             .catch(err => console.error(err));
     }
 }
 
-var recipeLink = $("#recipe-img-link");
-console.log(recipeLink);
 var cardClickHandler = function (e) {
     var recipeIdAttr = e.target.attr('data-id');
     console.log(recipeIdAttr);
@@ -200,10 +194,7 @@ var cardClickHandler = function (e) {
     if (recipeIdAttr) {
         getRecipe(recipeIdAttr);
     }
-    var redirectUrl = './recipe.html';
-    document.location = redirectUrl;
+    document.location = './recipe.html';
 }
 
-recipeLink.addEventListener('click', cardClickHandler);
-
-getFoodList()
+getFoodList();
