@@ -166,7 +166,6 @@ function getFoodList(anime) {
                 // console.log(data.results[0].thumbnail_url);
                 // console.log(data.results[2].original_video_url);
                 var dataResults = data.results;
-                console.log(dataResults);
                 for (var i = 0; i < dataResults.length; i++) {
                     var recipeCard = `
                   <div class="card column is-2-widescreen is-2-desktop is-8-mobile is-3-tablet recipe-card-cont">
@@ -186,15 +185,16 @@ function getFoodList(anime) {
                     recipeCardEl.append(recipeCard);
                 }
                 var recipeLink = $("#recipe-img-link");
-                recipeLink.addEventListener('click', cardClickHandler);
+                recipeLink.on('click', cardClickHandler);
             })
             .catch(err => console.error(err));
     }
 }
 
-var cardClickHandler = function (e) {
-    var recipeIdAttr = e.target.attr('data-id');
+var cardClickHandler = function () {
+    var btnClicked = $(this);
     console.log(recipeIdAttr);
+    var recipeIdAttr = btnClicked.attr('data-id')
     localStorage.setItem("recipe-id", recipeIdAttr);
     if (recipeIdAttr) {
         getRecipe(recipeIdAttr);
