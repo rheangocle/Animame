@@ -1,11 +1,11 @@
-// var recipeLink = $("#recipe-img-link");
-// var cardClickHandler = function (e) {
-//   var recipeIdAttr = e.target.attr('data-id');
+var recipeLink = $("#recipe-img-link");
+var cardClickHandler = function (e) {
+  var recipeIdAttr = e.target.attr('data-id');
 
-//   if (recipeIdAttr) {
-//     getRecipe(recipeIdAttr);
-//   }
-// }
+  if (recipeIdAttr) {
+    getRecipe(recipeIdAttr);
+  }
+}
 
 var cookInstructionsEl = $('#cooking-intructions');
 var recipeImageCardEl = $('.img-recipe-card');
@@ -56,4 +56,4 @@ function getRecipe() {
 }
 
 getRecipe()
-// recipeLink.click(cardClickHandler)
+recipeLink.click(cardClickHandler)
