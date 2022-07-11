@@ -2,16 +2,14 @@ var formEl = document.querySelector('#form');
 var searchBtn = document.querySelector('.anime-search-btn');
 var searchInput = document.querySelector('#query');
 
-var formSubmitHandler = function (e) {
-  e.preventDefault();
+var formSubmitHandler = function (event) {
 
+  event.preventDefault();
   var animeTitle = searchInput.value.trim();
-
-  if (animeTitle !== null) {
-    // localStorage.setItem(searchInput);
-    document.location.replace('./anime.html');
-  }
+  //need to add anime search to function in anime js for fetch url
+  searchAnime(animeTitle);
+  document.location.href = "./anime.html";
 }
 
 
-searchBtn.on('submit', formSubmitHandler);
+searchBtn.addEventListener('click', formSubmitHandler);
