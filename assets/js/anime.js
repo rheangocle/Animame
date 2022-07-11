@@ -164,10 +164,11 @@ function getFoodList(anime) {
                 //console.log(data.results[0].name);
                 // console.log(data.results[2].instructions);
                 // console.log(data.results[2].nutrition);
-                //console.log(data.results[0].thumbnail_url);
+                // console.log(data.results[0].thumbnail_url);
                 // console.log(data.results[2].original_video_url);
-
-                for (var i = 0; i < data.results.length; i++) {
+                var dataResults = data.results;
+                console.log(dataResults);
+                for (var i = 0; i < dataResults.length; i++) {
                     var recipeCard = `
                   <div class="card column is-2-widescreen is-2-desktop is-8-mobile is-3-tablet recipe-card-cont">
                       <div class="card-image">
@@ -189,5 +190,20 @@ function getFoodList(anime) {
             .catch(err => console.error(err));
     }
 }
+
+var recipeLink = $("#recipe-img-link");
+console.log(recipeLink);
+var cardClickHandler = function (e) {
+    var recipeIdAttr = e.target.attr('data-id');
+    console.log(recipeIdAttr);
+    localStorage.setItem("recipe-id", recipeIdAttr);
+    if (recipeIdAttr) {
+        getRecipe(recipeIdAttr);
+    }
+    var redirectUrl = './recipe.html';
+    document.location = redirectUrl;
+}
+
+recipeLink.addEventListener('click', cardClickHandler);
 
 getFoodList()
