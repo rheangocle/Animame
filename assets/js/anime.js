@@ -39,6 +39,8 @@ var searchAnime = function () {
             // }
             idField.textContent = data.data[0].id;
             populatePage();
+
+
         });
 }
 searchAnime();
@@ -98,7 +100,6 @@ var populatePage = function () {
             posterImageField.src = posterImage;
         });
 }
-
 
 //Tasty API
 
