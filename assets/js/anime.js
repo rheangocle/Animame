@@ -106,27 +106,29 @@ var foodObj = {
     11: ['ramen', 'dango', 'yakiniku', 'curry', 'fish on a stick', 'onigiri', 'bento', 'fried rice'],
     12: ['boiled chicken', 'seafood pasta', 'lobster', 'sashimi', 'seafood risotto', 'takoyaki', 'fried rice', 'seafood fried rice', 'roz bel laban', 'bread', 'lasagna', 'cotton candy', 'chocolate', 'ice cream', 'donuts', 'manju', 'tarts', 'croquembouche', 'biscuits', 'chiffon cake', 'spongecake', 'mochi', 'shiruko', 'semla', 'dango'],
     99: ['natto', 'soumen', 'soba', 'onigiri', 'sukiyaki', 'food spread'],
-    176: ['cookie','buscuit','red bean bun','rice ball','shrimp tempura','rice',],
+    176: ['cookie', 'buscuit', 'red bean bun', 'rice ball', 'shrimp tempura', 'rice',],
     199: ['beans', 'fruit', 'egg', 'pudding', 'takoyaki'],
-    1376: ['cake','cookies','dessert','food','pie','pies','sweet','treat','ice cream','apple'],
+    1376: ['cake', 'cookies', 'dessert', 'food', 'pie', 'pies', 'sweet', 'treat', 'ice cream', 'apple'],
     4676: ['gyoza', 'tiny sausage', 'tempura', 'maki', 'stir fried veggies', 'fish', 'fish pizza', 'bento'],
     6448: ['hot dog', 'pizza', 'fried chicken', 'donuts', 'fries', 'pie', 'burgers', 'cream stew'],
     6452: ['boiled egg', 'coconut milk', 'curry', 'instant noodles', 'lava cookie', 'rice balls', 'stew', 'poffins', 'muffins', 'mini cake', 'masaladas', 'ketchup'],
     7158: ['caprese salad', 'lamb chops', 'pudding', 'katsu', 'squid ink spaghetti', 'vento aureo'],
     7442: ['omelette', 'hamburger steak', 'baked potato', 'chicken okonomiyaki', 'strawberry bread', 'stew'],
-    8699: ['meat pie','mushroom','pudding','grilled cheese','bison','apple pie','cider'],
+    8699: ['meat pie', 'mushroom', 'pudding', 'grilled cheese', 'bison', 'apple pie', 'cider'],
     9967: ['roast pork', 'risotto', 'gyoza', 'ramen', 'tempura don', 'steak don', 'gohan', 'kaarage', 'eggs benedict', 'fried rice', 'omelette', 'katsu curry', 'katsudon', 'okiakage', 'frittata', 'bento', 'pork curry', 'bourguignon', 'omurice', 'pineapple rice', 'shoyu ramen'],
     10740: ['egg over rice', 'omurice', 'hot pot', 'soup'],
     11469: ['tart', 'truffles', 'fried ice cream', 'fries', 'katsudon', 'macarons', 'spicy kaarage', 'mapo tofu'],
-    11614: ['pancakes','waffles','cake','katsu','bento','pizza','ramen','strawberry shortcake','sandwhich'],
+    11614: ['pancakes', 'waffles', 'cake', 'katsu', 'bento', 'pizza', 'ramen', 'strawberry shortcake', 'sandwhich'],
     12268: ['tart', 'truffles', 'fried ice cream', 'fries', 'katsudon', 'macarons', 'spicy kaarage', 'mapo tofu'],
     13209: ['potatoes', 'meatloaf', 'sandwich'],
     13881: ['tart', 'truffles', 'fried ice cream', 'fries', 'katsudon', 'macarons', 'spicy kaarage', 'mapo tofu'],
     41370: ['tempura', 'bento box', 'onigiri', 'udon', 'gyunabe', 'miso', 'kabayaki', 'sake', 'daikon', 'konpeito'],
     42765: ['crepe', 'nabe', 'rice ball', 'soy beans', 'sandwich', 'chicken meatballs'],
-    45398: ['butter cookies', 'strawberry shortcake', 'omurice', 'marinade', 'nut pancake', 'parfait', 'bloody orange juice', 'ice cocoa', 'stew'],}
+    45398: ['butter cookies', 'strawberry shortcake', 'omurice', 'marinade', 'nut pancake', 'parfait', 'bloody orange juice', 'ice cocoa', 'stew'],
+}
 
 var recipeCardEl = $('.recipe-card');
+var recipeLink;
 
 //Fetching from Tasty API
 const options = {
@@ -168,10 +170,10 @@ function getFoodList(anime) {
                 var dataResults = data.results;
                 for (var i = 0; i < dataResults.length; i++) {
                     var recipeCard = `
-                  <div class="card column is-2-widescreen is-2-desktop is-8-mobile is-3-tablet recipe-card-cont">
+                  <div class="card column is-2-widescreen is-2-desktop is-8-mobile is-3-tablet recipe-card-cont" data-id="${data.results[i].id}">
                       <div class="card-image">
                           <figure class="image">
-                          <a><img id="recipe-img-link" data-id="${data.results[i].id}" src="${data.results[i].thumbnail_url}" alt="Placeholder image">
+                          <a><img id="recipe-img-link" src="${data.results[i].thumbnail_url}" alt="Placeholder image">
                           </a>
                           </figure>
                           <div class="card-header-title">
@@ -184,7 +186,7 @@ function getFoodList(anime) {
                   </div>`
                     recipeCardEl.append(recipeCard);
                 }
-                var recipeLink = $("#recipe-img-link");
+                recipeLink = recipeCardEl.children();
                 recipeLink.on('click', cardClickHandler);
             })
             .catch(err => console.error(err));
@@ -193,12 +195,10 @@ function getFoodList(anime) {
 
 var cardClickHandler = function () {
     var btnClicked = $(this);
+    console.log(btnClicked);
+    var recipeIdAttr = btnClicked.attr('data-id');
     console.log(recipeIdAttr);
-    var recipeIdAttr = btnClicked.attr('data-id')
     localStorage.setItem("recipe-id", recipeIdAttr);
-    if (recipeIdAttr) {
-        getRecipe(recipeIdAttr);
-    }
     document.location = './recipe.html';
 }
 
