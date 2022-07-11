@@ -8,6 +8,7 @@ var posterImageField = document.getElementById('poster');
 var idField = document.getElementById("anime-id");
 var pageTitleField = document.getElementById("anime-title");
 
+var searchBtn = document.querySelector('.anime-search-btn')
 // anime search feature
 // searchField is a dummy variable. assign the real one later
 // searchField.addEventListener("keydown", searchAnime);
