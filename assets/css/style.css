@@ -53,6 +53,10 @@ img .shade {
   opacity: 0.70;
 }
 
+.recipe-list-items {
+  list-style-type: none;
+}
+
 li {
   list-style-type: disc;
 }
@@ -130,20 +134,20 @@ span {
 }
 
 .footer {
-  box-shadow: 0 50vh 0 50vh rgb(250,250,250);
-  
+  box-shadow: 0 50vh 0 50vh rgb(250, 250, 250);
+
 }
 
-.footer-start{
+.footer-start {
   font-size: small;
 }
 
 .footer a {
   color: black;
-  word-spacing:20px;
+  word-spacing: 20px;
 }
 
-.footer a:hover{
+.footer a:hover {
   transition: .80s;
   opacity: .30;
 }

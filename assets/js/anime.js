@@ -104,23 +104,28 @@ var populatePage = function () {
 //Tasty API
 
 var foodObj = {
-    45398: ['butter cookies', 'strawberry shortcake', 'omurice', 'marinade', 'nut pancake', 'parfait', 'bloody orange juice', 'ice cocoa', 'stew'],
-    41370: ['tempura', 'bento box', 'onigiri', 'udon', 'gyunabe', 'miso', 'kabayaki', 'sake', 'daikon', 'konpeito'],
     11: ['ramen', 'dango', 'yakiniku', 'curry', 'fish on a stick', 'onigiri', 'bento', 'fried rice'],
-    199: ['beans', 'fruit', 'egg', 'pudding', 'takoyaki'],
-    6452: ['boiled egg', 'coconut milk', 'curry', 'instant noodles', 'lava cookie', 'rice balls', 'stew', 'poffins', 'muffins', 'mini cake', 'masaladas', 'ketchup'],
     12: ['boiled chicken', 'seafood pasta', 'lobster', 'sashimi', 'seafood risotto', 'takoyaki', 'fried rice', 'seafood fried rice', 'roz bel laban', 'bread', 'lasagna', 'cotton candy', 'chocolate', 'ice cream', 'donuts', 'manju', 'tarts', 'croquembouche', 'biscuits', 'chiffon cake', 'spongecake', 'mochi', 'shiruko', 'semla', 'dango'],
-    7442: ['omelette', 'hamburger steak', 'baked potato', 'chicken okonomiyaki', 'strawberry bread', 'stew'],
-    42765: ['crepe', 'nabe', 'rice ball', 'soy beans', 'sandwich', 'chicken meatballs'],
-    11469: ['tart', 'truffles', 'fried ice cream', 'fries', 'katsudon', 'macarons', 'spicy kaarage', 'mapo tofu'],
-    4676: ['gyoza', 'tiny sausage', 'tempura', 'maki', 'stir fried veggies', 'fish', 'fish pizza', 'bento'],
-    7158: ['caprese salad', 'lamb chops', 'pudding', 'katsu', 'squid ink spaghetti', 'vento aureo'],
-    10740: ['egg over rice', 'omurice', 'hot pot', 'soup'],
     99: ['natto', 'soumen', 'soba', 'onigiri', 'sukiyaki', 'food spread'],
-    13209: ['potatoes', 'meatloaf', 'sandwich'],
+    176: ['cookie','buscuit','red bean bun','rice ball','shrimp tempura','rice',],
+    199: ['beans', 'fruit', 'egg', 'pudding', 'takoyaki'],
+    1376: ['cake','cookies','dessert','food','pie','pies','sweet','treat','ice cream','apple'],
+    4676: ['gyoza', 'tiny sausage', 'tempura', 'maki', 'stir fried veggies', 'fish', 'fish pizza', 'bento'],
     6448: ['hot dog', 'pizza', 'fried chicken', 'donuts', 'fries', 'pie', 'burgers', 'cream stew'],
+    6452: ['boiled egg', 'coconut milk', 'curry', 'instant noodles', 'lava cookie', 'rice balls', 'stew', 'poffins', 'muffins', 'mini cake', 'masaladas', 'ketchup'],
+    7158: ['caprese salad', 'lamb chops', 'pudding', 'katsu', 'squid ink spaghetti', 'vento aureo'],
+    7442: ['omelette', 'hamburger steak', 'baked potato', 'chicken okonomiyaki', 'strawberry bread', 'stew'],
+    8699: ['meat pie','mushroom','pudding','grilled cheese','bison','apple pie','cider'],
     9967: ['roast pork', 'risotto', 'gyoza', 'ramen', 'tempura don', 'steak don', 'gohan', 'kaarage', 'eggs benedict', 'fried rice', 'omelette', 'katsu curry', 'katsudon', 'okiakage', 'frittata', 'bento', 'pork curry', 'bourguignon', 'omurice', 'pineapple rice', 'shoyu ramen'],
-}
+    10740: ['egg over rice', 'omurice', 'hot pot', 'soup'],
+    11469: ['tart', 'truffles', 'fried ice cream', 'fries', 'katsudon', 'macarons', 'spicy kaarage', 'mapo tofu'],
+    11614: ['pancakes','waffles','cake','katsu','bento','pizza','ramen','strawberry shortcake','sandwhich'],
+    12268: ['tart', 'truffles', 'fried ice cream', 'fries', 'katsudon', 'macarons', 'spicy kaarage', 'mapo tofu'],
+    13209: ['potatoes', 'meatloaf', 'sandwich'],
+    13881: ['tart', 'truffles', 'fried ice cream', 'fries', 'katsudon', 'macarons', 'spicy kaarage', 'mapo tofu'],
+    41370: ['tempura', 'bento box', 'onigiri', 'udon', 'gyunabe', 'miso', 'kabayaki', 'sake', 'daikon', 'konpeito'],
+    42765: ['crepe', 'nabe', 'rice ball', 'soy beans', 'sandwich', 'chicken meatballs'],
+    45398: ['butter cookies', 'strawberry shortcake', 'omurice', 'marinade', 'nut pancake', 'parfait', 'bloody orange juice', 'ice cocoa', 'stew'],}
 
 var recipeCardEl = $('.recipe-card');
 
@@ -143,7 +148,7 @@ const options = {
 //Getting recipe card images for anime
 function getFoodList(anime) {
     if (!foodObj.hasOwnProperty(anime)) {
-        $('.recipe-header').text('Sorry, no recipes for this anime.');
+        $('.recipe-header').text('🍙 Sorry, no recipes for this anime. 🍙');
         return;
     } else {
         $('.recipe-header').text('Recipes: ');
@@ -162,7 +167,6 @@ function getFoodList(anime) {
                 // console.log(data.results[0].thumbnail_url);
                 // console.log(data.results[2].original_video_url);
                 var dataResults = data.results;
-                console.log(dataResults);
                 for (var i = 0; i < dataResults.length; i++) {
                     var recipeCard = `
                   <div class="card column is-2-widescreen is-2-desktop is-8-mobile is-3-tablet recipe-card-cont">
@@ -182,15 +186,16 @@ function getFoodList(anime) {
                     recipeCardEl.append(recipeCard);
                 }
                 var recipeLink = $("#recipe-img-link");
-                recipeLink.addEventListener('click', cardClickHandler);
+                recipeLink.on('click', cardClickHandler);
             })
             .catch(err => console.error(err));
     }
 }
 
-var cardClickHandler = function (e) {
-    var recipeIdAttr = e.target.attr('data-id');
+var cardClickHandler = function () {
+    var btnClicked = $(this);
     console.log(recipeIdAttr);
+    var recipeIdAttr = btnClicked.attr('data-id')
     localStorage.setItem("recipe-id", recipeIdAttr);
     if (recipeIdAttr) {
         getRecipe(recipeIdAttr);

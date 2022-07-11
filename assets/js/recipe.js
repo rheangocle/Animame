@@ -1,6 +1,7 @@
 var cookInstructionsEl = $('#cooking-intructions');
 var recipeImageCardEl = $('.img-recipe-card');
 var ingredientsListEl = $('.ingredients-list')
+var pageTitle = $("#recipe-page-title");
 
 function getRecipe() {
   var recipeId = localStorage.getItem("recipe-id");
@@ -17,12 +18,13 @@ function getRecipe() {
     .then(response => response.json())
     .then(info => {
       console.log(info);
-
+      pageTitle.text("Animame | " + info.name);
       for (var i = 0; i < info.instructions.length; i++) {
 
         var prepStep =
           `<li class='recipe-list-items'> ${info.instructions[i].position}. ${info.instructions[i].display_text} </li>`;
         cookInstructionsEl.append(prepStep);
+        console.log(prepStep);
       }
 
       for (var i = 0; i < info.sections.length; i++) {
