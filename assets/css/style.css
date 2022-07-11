@@ -197,3 +197,8 @@ span {
 .more-button {
   margin-top: 80px;
 }
+
+::placeholder {
+  opacity: 1;
+  color: black;
+}

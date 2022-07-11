@@ -8,6 +8,7 @@ var posterImageField = document.getElementById('poster');
 var idField = document.getElementById("anime-id");
 var pageTitleField = document.getElementById("anime-title");
 
+
 // anime search feature
 // searchField is a dummy variable. assign the real one later
 // searchField.addEventListener("keydown", searchAnime);
@@ -62,7 +63,11 @@ var populatePage = function () {
             console.log(data);
             var titleEnglish = data.data.attributes.titles.en;
             // placeholder variables used, make sure to define them based on anime.html
-            // console.log(titleEnglish);
+
+            //Converting title to camel case and using it to generate food list
+            var camelizedName = camelize(titleEnglish);
+            getFoodList(camelizedName);
+
             var titleJP = data.data.attributes.titles.en_jp;
             if (titleEnglish == undefined) {
                 japaneseTitleField.textContent = "Japanese Title: " + titleJP;
@@ -103,7 +108,6 @@ var populatePage = function () {
 
 //Tasty API
 
-//object of arrays ==> should this be converted into individual arrays for each show?
 var foodObj = {
     spyFamily: ['butter cookies', 'strawberry shortcake', 'omurice', 'marinade', 'nut pancake', 'parfait', 'bloody orange juice', 'ice cocoa', 'stew'],
     demonSlayer: ['tempura', 'bento box', 'onigiri', 'udon', 'gyunabe', 'miso', 'kabayaki', 'sake', 'daikon', 'konpeito'],
@@ -113,7 +117,7 @@ var foodObj = {
     onePiece: ['boiled chicken', 'seafood pasta', 'lobster', 'sashimi', 'seafood risotto', 'takoyaki', 'fried rice', 'seafood fried rice', 'roz bel laban', 'bread', 'lasagna', 'cotton candy', 'chocolate', 'ice cream', 'donuts', 'manju', 'tarts', 'croquembouche', 'biscuits', 'chiffon cake', 'spongecake', 'mochi', 'shiruko', 'semla', 'dango'],
     attackOnTitan: ['omelette', 'hamburger steak', 'baked potato', 'chicken okonomiyaki', 'strawberry bread', 'stew'],
     jujutsuKaisen: ['crepe', 'nabe', 'rice ball', 'soy beans', 'sandwich', 'chicken meatballs'],
-    myHero: ['tart', 'truffles', 'fried ice cream', 'fries', 'katsudon', 'macarons', 'spicy kaarage', 'mapo tofu'],
+    myHeroAcademia: ['tart', 'truffles', 'fried ice cream', 'fries', 'katsudon', 'macarons', 'spicy kaarage', 'mapo tofu'],
     fairyTail: ['gyoza', 'tiny sausage', 'tempura', 'maki', 'stir fried veggies', 'fish', 'fish pizza', 'bento'],
     jojo: ['caprese salad', 'lamb chops', 'pudding', 'katsu', 'squid ink spaghetti', 'vento aureo'],
     onePunchMan: ['egg over rice', 'omurice', 'hot pot', 'soup'],
@@ -123,10 +127,9 @@ var foodObj = {
     foodWars: ['roast pork', 'risotto', 'gyoza', 'ramen', 'tempura don', 'steak don', 'gohan', 'kaarage', 'eggs benedict', 'fried rice', 'omelette', 'katsu curry', 'katsudon', 'okiakage', 'frittata', 'bento', 'pork curry', 'bourguignon', 'omurice', 'pineapple rice', 'shoyu ramen'],
 }
 
-
 var recipeCardEl = $('.recipe-card');
 
-//Fetching from Tasty
+//Fetching from Tasty API
 const options = {
     method: 'GET',
     headers: {
@@ -135,23 +138,24 @@ const options = {
     }
 };
 
+//Convert anime titles to camelcase
 function camelize(str) {
     return str.replace(/(?:^\w|[A-Z]|\b\w)/g, function (word, index) {
         return index === 0 ? word.toLowerCase() : word.toUpperCase();
     }).replace(/\s+/g, '');
 };
 
-//camelize('jujutsu kaisen');
-//console.log(foodObj[camelize('jujutsu kaisen')]);
-//q=food name
-function getFoodList() {
-    if (!foodObj.hasOwnProperty(camelize('pokemon go'))) {
+//Getting recipe card images for anime
+function getFoodList(anime) {
+    if (!foodObj.hasOwnProperty(anime)) {
         $('.recipe-header').text('Sorry, no recipes for this anime.');
         return;
+    } else {
+        $('.recipe-header').text('Recipes: ');
     }
 
-    for (var i = 0; i < foodObj[camelize('jujutsu kaisen')].length; i++) {
-        fetch(`https://tasty.p.rapidapi.com/recipes/list?from=0&size=2&q=${foodObj[camelize('jujutsu kaisen')][i]}`, options)
+    for (var i = 0; i < foodObj[anime].length; i++) {
+        fetch(`https://tasty.p.rapidapi.com/recipes/list?from=0&size=3&q=${foodObj[anime][i]}`, options)
 
             // fetch(`https://tasty.p.rapidapi.com/recipes/list?from=0&size=20&q=${foodObj.spyFamily[1]}`, options)
             .then(response => response.json())
