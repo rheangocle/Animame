@@ -1,4 +1,5 @@
 var recipeLink = $("#recipe-img-link");
+
 console.log(recipeLink);
 var cardClickHandler = function (e) {
   var recipeIdAttr = e.target.attr('data-id');
@@ -61,4 +62,5 @@ function getRecipe() {
 }
 
 getRecipe()
+
 recipeLink.click(cardClickHandler);
