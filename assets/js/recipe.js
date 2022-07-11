@@ -31,7 +31,10 @@ function getRecipe() {
         var ingredientsSection = `
     <div class="title is-6 ">${info.sections[i].name}
     </div>`
-        ingredientsListEl.append(ingredientsSection);
+        console.log(ingredientsSection);
+        if (info.sections[i].name != null) {
+          ingredientsListEl.append(ingredientsSection);
+        }
         for (var j = 0; j < info.sections[i].components.length; j++) {
           var ingredientsItems = `
         <li>${info.sections[i].components[j].raw_text}</li>`
