@@ -32,6 +32,10 @@ img .shade {
   margin-top: 2rem;
 }
 
+.recipe-card-top {
+  padding-top: 50px;
+}
+
 .poster-image {
   max-height: 100%;
 }
@@ -177,6 +181,9 @@ span {
   padding-top: 60px;
 }
 
+.img-recipe-card {
+  transform: scale(1.3);
+}
 
 .img-recipe-card,
 .ing-card,
