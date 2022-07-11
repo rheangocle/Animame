@@ -48,7 +48,8 @@ searchAnime();
 
 var populatePage = function () {
     // fetching data from the api
-    id = localStorage.getItem("id");
+    var id = localStorage.getItem("id");
+    getFoodList(id);
     console.log(id);
     fetch(
         'https://kitsu.io/api/edge/anime/' + id
@@ -62,6 +63,8 @@ var populatePage = function () {
             // setting the english title
             var titleEnglish = data.data.attributes.titles.en;
             // setting the japanese title
+            // var camelizedName = camelize(titleEnglish);
+            // getFoodList(camelizedName);
             var titleJP = data.data.attributes.titles.en_jp;
             // checking if either title is not listed and putting info on the page based on which titles exist
             if (titleEnglish == undefined) {
@@ -100,22 +103,22 @@ var populatePage = function () {
 //Tasty API
 
 var foodObj = {
-    spyFamily: ['butter cookies', 'strawberry shortcake', 'omurice', 'marinade', 'nut pancake', 'parfait', 'bloody orange juice', 'ice cocoa', 'stew'],
-    demonSlayer: ['tempura', 'bento box', 'onigiri', 'udon', 'gyunabe', 'miso', 'kabayaki', 'sake', 'daikon', 'konpeito'],
-    naruto: ['ramen', 'dango', 'yakiniku', 'curry', 'fish on a stick', 'onigiri', 'bento', 'fried rice'],
-    dragonBall: ['beans', 'fruit', 'egg', 'pudding', 'takoyaki'],
-    pokemon: ['boiled egg', 'coconut milk', 'curry', 'instant noodles', 'lava cookie', 'rice balls', 'stew', 'poffins', 'muffins', 'mini cake', 'masaladas', 'ketchup'],
-    onePiece: ['boiled chicken', 'seafood pasta', 'lobster', 'sashimi', 'seafood risotto', 'takoyaki', 'fried rice', 'seafood fried rice', 'roz bel laban', 'bread', 'lasagna', 'cotton candy', 'chocolate', 'ice cream', 'donuts', 'manju', 'tarts', 'croquembouche', 'biscuits', 'chiffon cake', 'spongecake', 'mochi', 'shiruko', 'semla', 'dango'],
-    attackOnTitan: ['omelette', 'hamburger steak', 'baked potato', 'chicken okonomiyaki', 'strawberry bread', 'stew'],
-    jujutsuKaisen: ['crepe', 'nabe', 'rice ball', 'soy beans', 'sandwich', 'chicken meatballs'],
-    myHeroAcademia: ['tart', 'truffles', 'fried ice cream', 'fries', 'katsudon', 'macarons', 'spicy kaarage', 'mapo tofu'],
-    fairyTail: ['gyoza', 'tiny sausage', 'tempura', 'maki', 'stir fried veggies', 'fish', 'fish pizza', 'bento'],
-    jojo: ['caprese salad', 'lamb chops', 'pudding', 'katsu', 'squid ink spaghetti', 'vento aureo'],
-    onePunchMan: ['egg over rice', 'omurice', 'hot pot', 'soup'],
-    fruitsBasket: ['natto', 'soumen', 'soba', 'onigiri', 'sukiyaki', 'food spread'],
-    blackClover: ['potatoes', 'meatloaf', 'sandwich'],
-    hunterXHunter: ['hot dog', 'pizza', 'fried chicken', 'donuts', 'fries', 'pie', 'burgers', 'cream stew'],
-    foodWars: ['roast pork', 'risotto', 'gyoza', 'ramen', 'tempura don', 'steak don', 'gohan', 'kaarage', 'eggs benedict', 'fried rice', 'omelette', 'katsu curry', 'katsudon', 'okiakage', 'frittata', 'bento', 'pork curry', 'bourguignon', 'omurice', 'pineapple rice', 'shoyu ramen'],
+    45398: ['butter cookies', 'strawberry shortcake', 'omurice', 'marinade', 'nut pancake', 'parfait', 'bloody orange juice', 'ice cocoa', 'stew'],
+    41370: ['tempura', 'bento box', 'onigiri', 'udon', 'gyunabe', 'miso', 'kabayaki', 'sake', 'daikon', 'konpeito'],
+    11: ['ramen', 'dango', 'yakiniku', 'curry', 'fish on a stick', 'onigiri', 'bento', 'fried rice'],
+    199: ['beans', 'fruit', 'egg', 'pudding', 'takoyaki'],
+    6452: ['boiled egg', 'coconut milk', 'curry', 'instant noodles', 'lava cookie', 'rice balls', 'stew', 'poffins', 'muffins', 'mini cake', 'masaladas', 'ketchup'],
+    12: ['boiled chicken', 'seafood pasta', 'lobster', 'sashimi', 'seafood risotto', 'takoyaki', 'fried rice', 'seafood fried rice', 'roz bel laban', 'bread', 'lasagna', 'cotton candy', 'chocolate', 'ice cream', 'donuts', 'manju', 'tarts', 'croquembouche', 'biscuits', 'chiffon cake', 'spongecake', 'mochi', 'shiruko', 'semla', 'dango'],
+    7442: ['omelette', 'hamburger steak', 'baked potato', 'chicken okonomiyaki', 'strawberry bread', 'stew'],
+    42765: ['crepe', 'nabe', 'rice ball', 'soy beans', 'sandwich', 'chicken meatballs'],
+    11469: ['tart', 'truffles', 'fried ice cream', 'fries', 'katsudon', 'macarons', 'spicy kaarage', 'mapo tofu'],
+    4676: ['gyoza', 'tiny sausage', 'tempura', 'maki', 'stir fried veggies', 'fish', 'fish pizza', 'bento'],
+    7158: ['caprese salad', 'lamb chops', 'pudding', 'katsu', 'squid ink spaghetti', 'vento aureo'],
+    10740: ['egg over rice', 'omurice', 'hot pot', 'soup'],
+    99: ['natto', 'soumen', 'soba', 'onigiri', 'sukiyaki', 'food spread'],
+    13209: ['potatoes', 'meatloaf', 'sandwich'],
+    6448: ['hot dog', 'pizza', 'fried chicken', 'donuts', 'fries', 'pie', 'burgers', 'cream stew'],
+    9967: ['roast pork', 'risotto', 'gyoza', 'ramen', 'tempura don', 'steak don', 'gohan', 'kaarage', 'eggs benedict', 'fried rice', 'omelette', 'katsu curry', 'katsudon', 'okiakage', 'frittata', 'bento', 'pork curry', 'bourguignon', 'omurice', 'pineapple rice', 'shoyu ramen'],
 }
 
 var recipeCardEl = $('.recipe-card');
@@ -130,11 +133,11 @@ const options = {
 };
 
 //Convert anime titles to camelcase
-function camelize(str) {
-    return str.replace(/(?:^\w|[A-Z]|\b\w)/g, function (word, index) {
-        return index === 0 ? word.toLowerCase() : word.toUpperCase();
-    }).replace(/\s+/g, '');
-};
+// function camelize(str) {
+//     return str.replace(/(?:^\w|[A-Z]|\b\w)/g, function (word, index) {
+//         return index === 0 ? word.toLowerCase() : word.toUpperCase();
+//     }).replace(/\s+/g, '');
+// };
 
 //Getting recipe card images for anime
 function getFoodList(anime) {
