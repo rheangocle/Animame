@@ -8,7 +8,6 @@ body {
 .carousel-container {
   position: relative;
   width: 320px;
-  left: 750px;
   margin: 100px auto 0 auto;
   perspective: 1600px;
 }
@@ -54,21 +53,8 @@ img .shade {
   opacity: 0.70;
 }
 
-
 li {
   list-style-type: disc;
-}
-
-.recipe-list-items {
-  list-style-type: none;
-}
-
-.recipe-card-top {
-  padding-top: 50px
-}
-
-.recipe-image {
-  transform: scale(1.3);
 }
 
 .summary-block,
@@ -105,7 +91,6 @@ span {
 .carousel {
   align-items: center;
   justify-content: center;
-  left: 200px;
 }
 
 .carousel__face:nth-child(1) {
@@ -198,7 +183,7 @@ span {
   margin-top: 80px;
 }
 
-::placeholder {
-  opacity: 1;
-  color: black;
+.hero {
+  justify-content: center;
+  align-items: center;
 }
