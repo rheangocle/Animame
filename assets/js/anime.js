@@ -151,7 +151,7 @@ function getFoodList(anime) {
         $('.recipe-header').text('Sorry, no recipes for this anime.');
         return;
     } else {
-        $('.recipe-header').text('Recipe');
+        $('.recipe-header').text('Recipes: ');
     }
 
     for (var i = 0; i < foodObj[anime].length; i++) {
