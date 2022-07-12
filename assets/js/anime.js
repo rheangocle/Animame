@@ -142,6 +142,7 @@ function getFoodList(anime) {
                     // appending all cards to the anime page
                     recipeCardEl.append(recipeCard);
                 }
+                
                 // Calling function to open recipe information page
                 recipeLink = recipeCardEl.children();
                 recipeLink.on('click', cardClickHandler);

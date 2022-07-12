@@ -6,6 +6,7 @@ var pageTitle = $("#recipe-page-title");
 
 //Function to get recipe information from tasty api
 function getRecipe() {
+
   //getting recipe ID from local storage
   var recipeId = localStorage.getItem("recipe-id");
   const options = {
