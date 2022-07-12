@@ -23,7 +23,7 @@ SO THAT I can prepare the food and enjoy it at home
 
 ## Mock-up
 
-![Screenshot of Animame homepage](./assets/images/screenshot.PNG)
+![Screenshot of Animame homepage](./assets/images/Mockup.gif)
 
 
 ---
