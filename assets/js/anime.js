@@ -124,7 +124,26 @@ function getFoodList(anime) {
             .then(data => {
                 // Displaying recipe cards on page
                 for (var i = 0; i < data.results.length; i++) {
-                    var recipeCard = `
+                    // checking if the recipe is a compilation and displaying only the first recipe in that compilation if so
+                    var recipeCardId = data.results[i].canonical_id;
+                    if (recipeCardId.substring(0, 11) == "compilation") {
+                        var recipeCard = `
+                        <div class="card column is-2-widescreen is-2-desktop is-8-mobile is-3-tablet recipe-card-cont" data-id="${data.results[i].recipes[0].id}">
+                            <div class="card-image">
+                                <figure class="image">
+                                <a><img id="recipe-img-link" src="${data.results[i].recipes[0].thumbnail_url}" alt="Placeholder image">
+                                </a>
+                                </figure>
+                                <div class="card-header-title">
+                                <div class="card-title">
+                                    <a><p class="title is-6">${data.results[i].recipes[0].name}</p>
+                                    </a>
+                                </div>
+                                </div>
+                            </div>
+                        </div>`
+                    } else {
+                        var recipeCard = `
                   <div class="card column is-2-widescreen is-2-desktop is-8-mobile is-3-tablet recipe-card-cont" data-id="${data.results[i].id}">
                       <div class="card-image">
                           <figure class="image">
@@ -139,10 +158,11 @@ function getFoodList(anime) {
                           </div>
                       </div>
                   </div>`
+                    }
                     // appending all cards to the anime page
                     recipeCardEl.append(recipeCard);
                 }
-                
+
                 // Calling function to open recipe information page
                 recipeLink = recipeCardEl.children();
                 recipeLink.on('click', cardClickHandler);

@@ -20,6 +20,7 @@ function getRecipe() {
   fetch(`https://tasty.p.rapidapi.com/recipes/get-more-info?id=${recipeId}`, options)
     .then(response => response.json())
     .then(info => {
+      console.log(info);
       //Displaying anime name on tab
       pageTitle.text("Animame | " + info.name);
 
