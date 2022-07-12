@@ -9,7 +9,7 @@ var incrementPage = function () {
     // forcing the api to search for the next 12 anime
     pageNumber = pageNumber + 12;
     // calling the search function
-    searchAnime();
+    browseAnime();
     // refreshing the cards variable again
     cardsReal = browseAnimeCards.children();
 }
