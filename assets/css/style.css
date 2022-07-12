@@ -28,21 +28,26 @@ img .shade {
   box-shadow: 5px 5px 10px gray;
 }
 
+.dark-background {
+  background-color: #363636;
+}
+
 .recipe-header {
   margin-top: 2rem;
 }
 
 .recipe-card-top {
-  padding-top: 50px;
+  padding-top: 30px;
+  padding-bottom: 50px;
 }
 
 .poster-image {
   max-height: 100%;
 }
 
-.anime-block {
+/* .anime-block {
   margin-top: 50px;
-}
+} */
 
 /* can i make this ing-card??? v */
 

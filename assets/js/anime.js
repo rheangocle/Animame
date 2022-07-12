@@ -7,7 +7,8 @@ var descriptionField = document.getElementById('description');
 var posterImageField = document.getElementById('poster');
 var idField = document.getElementById("anime-id");
 var pageTitleField = document.getElementById("anime-title");
-
+var recipeCardEl = $('.recipe-card');
+var recipeLink;
 
 // anime search feature
 var searchAnime = function () {
@@ -43,11 +44,13 @@ var searchAnime = function () {
 
         });
 }
+
+//Calling function to fetch anime information from Kitsu
 searchAnime();
 
-// animeButton is a dummy variable. assign the real one later
 // animeButton.addEventListener("click", changePages);
 
+//Display anime information onto page
 var populatePage = function () {
     // fetching data from the api
     var id = localStorage.getItem("id");
@@ -61,12 +64,12 @@ var populatePage = function () {
         })
         // putting anime info onto the page
         .then(function (data) {
-            // setting anime attributs to the page
+            // setting anime attributes to the page
+
             // setting the english title
             var titleEnglish = data.data.attributes.titles.en;
+
             // setting the japanese title
-            // var camelizedName = camelize(titleEnglish);
-            // getFoodList(camelizedName);
             var titleJP = data.data.attributes.titles.en_jp;
             // checking if either title is not listed and putting info on the page based on which titles exist
             if (titleEnglish == undefined) {
@@ -101,7 +104,7 @@ var populatePage = function () {
         });
 }
 
-//Tasty API
+//Food in different anime
 
 var foodObj = {
     11: ['ramen', 'dango', 'yakiniku', 'curry', 'fish on a stick', 'onigiri', 'bento', 'fried rice'],
@@ -128,8 +131,6 @@ var foodObj = {
     45398: ['butter cookies', 'strawberry shortcake', 'omurice', 'marinade', 'nut pancake', 'parfait', 'bloody orange juice', 'ice cocoa', 'stew'],
 }
 
-var recipeCardEl = $('.recipe-card');
-var recipeLink;
 
 //Fetching from Tasty API
 const options = {
@@ -139,13 +140,6 @@ const options = {
         'X-RapidAPI-Host': 'tasty.p.rapidapi.com'
     }
 };
-
-//Convert anime titles to camelcase
-// function camelize(str) {
-//     return str.replace(/(?:^\w|[A-Z]|\b\w)/g, function (word, index) {
-//         return index === 0 ? word.toLowerCase() : word.toUpperCase();
-//     }).replace(/\s+/g, '');
-// };
 
 //Getting recipe card images for anime
 function getFoodList(anime) {
@@ -159,15 +153,16 @@ function getFoodList(anime) {
     for (var i = 0; i < foodObj[anime].length; i++) {
         fetch(`https://tasty.p.rapidapi.com/recipes/list?from=0&size=3&q=${foodObj[anime][i]}`, options)
 
-            // fetch(`https://tasty.p.rapidapi.com/recipes/list?from=0&size=20&q=${foodObj.spyFamily[1]}`, options)
             .then(response => response.json())
             .then(data => {
-                console.log(data);
+                //console.log(data);
                 //console.log(data.results[0].name);
                 // console.log(data.results[2].instructions);
                 // console.log(data.results[2].nutrition);
                 // console.log(data.results[0].thumbnail_url);
                 // console.log(data.results[2].original_video_url);
+
+                //Displaying recipe cards on page
                 var dataResults = data.results;
                 for (var i = 0; i < dataResults.length; i++) {
                     var recipeCard = `
@@ -187,6 +182,7 @@ function getFoodList(anime) {
                   </div>`
                     recipeCardEl.append(recipeCard);
                 }
+                //Calling function to open recipe information page
                 recipeLink = recipeCardEl.children();
                 recipeLink.on('click', cardClickHandler);
             })
@@ -194,11 +190,12 @@ function getFoodList(anime) {
     }
 }
 
+//Saving id of recipe to local storage when user clicks recipe card
 var cardClickHandler = function () {
     var btnClicked = $(this);
-    console.log(btnClicked);
+    //onsole.log(btnClicked);
     var recipeIdAttr = btnClicked.attr('data-id');
-    console.log(recipeIdAttr);
+    //console.log(recipeIdAttr);
     localStorage.setItem("recipe-id", recipeIdAttr);
     document.location = './recipe.html';
 }
