@@ -10,52 +10,11 @@ var pageTitleField = document.getElementById("anime-title");
 var recipeCardEl = $('.recipe-card');
 var recipeLink;
 
-// anime search feature
-var searchAnime = function () {
-    // user input from a search field
-    var search = "jujutsu kaisen";
-    // replacing spaces with %20 for the api call
-    var title = search.replace(/ /g, "%20");
-    // fetching data from the api, limiting to top 3 options during the search
-    fetch(
-        'https://kitsu.io/api/edge/anime?filter[text]=' + title + '&page[limit]=3&page[offset]=0'
-    )
-        .then(function (response) {
-            return response.json();
-        })
-        .then(function (data) {
-            console.log(data);
-            // for (i = 0; i < 3; i++) {
-            //     var searchTitleEnglish = document.createElement('h3');
-            //     searchTitleEnglish.textContent = data.data[i].attributes.titles.en;
-            //     console.log(searchTitleEnglish);
-            //     searchContainer.append(searchTitleEnglish);
-            //     var searchUserRating = document.createElement('p');
-            //     searchUserRating.textContent = data.data[i].attributes.averageRating;
-            //     console.log(searchUserRating);
-            //     searchContainer.append(searchUserRating);
-            //     var searchPosterImage = document.createElement('a');
-            //     searchPosterImage.textContent = data.data[i].attributes.posterImage.original;
-            //     console.log(searchPosterImage);
-            // }
-            idField.textContent = data.data[0].id;
-            populatePage();
-
-
-        });
-}
-
-//Calling function to fetch anime information from Kitsu
-searchAnime();
-
-// animeButton.addEventListener("click", changePages);
-
 //Display anime information onto page
 var populatePage = function () {
     // fetching data from the api
     var id = localStorage.getItem("id");
     getFoodList(id);
-    console.log(id);
     fetch(
         'https://kitsu.io/api/edge/anime/' + id
     )
@@ -71,6 +30,7 @@ var populatePage = function () {
 
             // setting the japanese title
             var titleJP = data.data.attributes.titles.en_jp;
+
             // checking if either title is not listed and putting info on the page based on which titles exist
             if (titleEnglish == undefined) {
                 japaneseTitleField.textContent = "Japanese Title: " + titleJP;
@@ -85,6 +45,7 @@ var populatePage = function () {
                 englishTitleField.textContent = "English Title: " + titleEnglish;
                 pageTitleField.textContent = "Animame | " + titleEnglish;
             }
+
             // setting the age rating and checking if certain fields are empty before putting info on the page
             var ageRating = data.data.attributes.ageRating;
             var ageRatingGuide = data.data.attributes.ageRatingGuide;
@@ -93,19 +54,25 @@ var populatePage = function () {
             } else {
                 ageRatingField.textContent = "Age Rating: " + ageRating + " - " + ageRatingGuide;
             }
+
             // setting the average user rating and putting it on the page
             var userRating = data.data.attributes.averageRating;
             userRatingField.textContent = "Average User Rating: " + userRating;
+
             // setting the description and poster image and putting them on the page
             var description = data.data.attributes.description;
             descriptionField.textContent = description;
             var posterImage = data.data.attributes.posterImage.original;
-            posterImageField.src = posterImage;
+            var coverImage = data.data.attributes.coverImage.original;
+            if (posterImage == null) {
+                posterImageField.src = coverImage;
+            } else {
+                posterImageField.src = posterImage;
+            }
         });
 }
 
-//Food in different anime
-
+// Food in different anime
 var foodObj = {
     11: ['ramen', 'dango', 'yakiniku', 'curry', 'fish on a stick', 'onigiri', 'bento', 'fried rice'],
     12: ['boiled chicken', 'seafood pasta', 'lobster', 'sashimi', 'seafood risotto', 'takoyaki', 'fried rice', 'seafood fried rice', 'roz bel laban', 'bread', 'lasagna', 'cotton candy', 'chocolate', 'ice cream', 'donuts', 'manju', 'tarts', 'croquembouche', 'biscuits', 'chiffon cake', 'spongecake', 'mochi', 'shiruko', 'semla', 'dango'],
@@ -131,8 +98,7 @@ var foodObj = {
     45398: ['butter cookies', 'strawberry shortcake', 'omurice', 'marinade', 'nut pancake', 'parfait', 'bloody orange juice', 'ice cocoa', 'stew'],
 }
 
-
-//Fetching from Tasty API
+// Fetching from Tasty API
 const options = {
     method: 'GET',
     headers: {
@@ -141,24 +107,23 @@ const options = {
     }
 };
 
-//Getting recipe card images for anime
+// Getting recipe card images for anime
 function getFoodList(anime) {
+    // checking if there are recipes in the food object for this anime
     if (!foodObj.hasOwnProperty(anime)) {
         $('.recipe-header').text('🍙 Sorry, no recipes for this anime. 🍙');
         return;
     } else {
         $('.recipe-header').text('Recipes: ');
     }
-
+    // looping through all recipes for that anime in the food object
     for (var i = 0; i < foodObj[anime].length; i++) {
         fetch(`https://tasty.p.rapidapi.com/recipes/list?from=0&size=3&q=${foodObj[anime][i]}`, options)
 
             .then(response => response.json())
             .then(data => {
-
-                //Displaying recipe cards on page
-                var dataResults = data.results;
-                for (var i = 0; i < dataResults.length; i++) {
+                // Displaying recipe cards on page
+                for (var i = 0; i < data.results.length; i++) {
                     var recipeCard = `
                   <div class="card column is-2-widescreen is-2-desktop is-8-mobile is-3-tablet recipe-card-cont" data-id="${data.results[i].id}">
                       <div class="card-image">
@@ -174,10 +139,11 @@ function getFoodList(anime) {
                           </div>
                       </div>
                   </div>`
+                    // appending all cards to the anime page
                     recipeCardEl.append(recipeCard);
                 }
-
-                //Calling function to open recipe information page
+                
+                // Calling function to open recipe information page
                 recipeLink = recipeCardEl.children();
                 recipeLink.on('click', cardClickHandler);
             })
@@ -185,14 +151,17 @@ function getFoodList(anime) {
     }
 }
 
-//Saving id of recipe to local storage when user clicks recipe card
+// Saving id of recipe to local storage when user clicks recipe card
 var cardClickHandler = function () {
     var btnClicked = $(this);
+    // setting the recipe id from the button the user clicked on
     var recipeIdAttr = btnClicked.attr('data-id');
-
+    // putting the recipe id in local storage for future fetching
     localStorage.setItem("recipe-id", recipeIdAttr);
     document.location = './recipe.html';
 }
 
-//Generating food recipe cards
+// Generating food recipe cards
 getFoodList();
+// generating anime info and putting it on the page
+populatePage();

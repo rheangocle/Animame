@@ -4,7 +4,7 @@ var recipeImageCardEl = $('.img-recipe-card');
 var ingredientsListEl = $('.ingredients-list')
 var pageTitle = $("#recipe-page-title");
 
-//Fucntion to get recipe information from tasty api
+//Function to get recipe information from tasty api
 function getRecipe() {
 
   //getting recipe ID from local storage
@@ -20,7 +20,6 @@ function getRecipe() {
   fetch(`https://tasty.p.rapidapi.com/recipes/get-more-info?id=${recipeId}`, options)
     .then(response => response.json())
     .then(info => {
-
       //Displaying anime name on tab
       pageTitle.text("Animame | " + info.name);
 
@@ -36,10 +35,11 @@ function getRecipe() {
         var ingredientsSection = `
     <div class="title is-6 ">${info.sections[i].name}
     </div>`
-        console.log(ingredientsSection);
+        //Checking for null section names where a recipe only has one prep section
         if (info.sections[i].name != null) {
           ingredientsListEl.append(ingredientsSection);
         }
+        //Adding prep ingredient components to the page
         for (var j = 0; j < info.sections[i].components.length; j++) {
           var ingredientsItems = `
         <li>${info.sections[i].components[j].raw_text}</li>`
