@@ -1,15 +1,17 @@
 // global variable declaration
 var browseAnimeCards = $('#browse-anime-cards');
 var cardsReal;
-
 var pageNumber = 0;
 var showMore = $('#moreBtn');
+
+//Displaying more anime onto page
 var incrementPage = function () {
     pageNumber = pageNumber + 12;
     browseAnime();
     cardsReal = browseAnimeCards.children();
 }
 
+//event listener for the anime cards to swap to that anime's details page
 showMore.on('click', incrementPage);
 
 // setting up the initial call function
@@ -23,27 +25,32 @@ var browseAnime = function () {
             return response.json();
         })
         .then(function (data) {
-            console.log(data);
+            //console.log(data);
             // looping through all 12 results
             for (i = 0; i < 12; i++) {
                 // creating the anchor element to contain all anime info on the page
                 var anchor = $('<a class="column anime-browse-container"></a>')
                 anchor.appendTo(browseAnimeCards);
+
                 // creating the title element and putting text in it
                 var browseAnimeTitle = $('<h2 class="title is-6"></h2>');
                 var englishTitle = data.data[i].attributes.titles.en;
                 var japaneseTitle = data.data[i].attributes.titles.en_jp;
+
                 if (englishTitle == undefined) {
                     browseAnimeTitle.text(japaneseTitle);
                 } else {
                     browseAnimeTitle.text(englishTitle);
                 }
+
                 // creating the image element and putting a src in it
                 var browseAnimeImage = $('<img class="anime-browse-img is-12-mobile is-3-desktop"></img>');
                 browseAnimeImage.attr('src', data.data[i].attributes.coverImage.original);
+
                 // grabbing the anime id from the api and adding it to the existing anchor
                 var browseID = data.data[i].id;
                 anchor.attr('id', browseID);
+
                 // appending the cover image and title to the anchors
                 browseAnimeTitle.appendTo(anchor);
                 browseAnimeImage.appendTo(anchor);
@@ -68,6 +75,5 @@ function swapPage(event) {
     document.location = './anime.html';
 }
 
-// event listener for the anime cards to swap to that anime's details page
-
+//Calling function to fetch information and append to page
 browseAnime();

@@ -200,4 +200,5 @@ var cardClickHandler = function () {
     document.location = './recipe.html';
 }
 
+//Generating food recipe cards
 getFoodList();
