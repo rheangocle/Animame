@@ -155,12 +155,6 @@ function getFoodList(anime) {
 
             .then(response => response.json())
             .then(data => {
-                //console.log(data);
-                //console.log(data.results[0].name);
-                // console.log(data.results[2].instructions);
-                // console.log(data.results[2].nutrition);
-                // console.log(data.results[0].thumbnail_url);
-                // console.log(data.results[2].original_video_url);
 
                 //Displaying recipe cards on page
                 var dataResults = data.results;
@@ -182,6 +176,7 @@ function getFoodList(anime) {
                   </div>`
                     recipeCardEl.append(recipeCard);
                 }
+
                 //Calling function to open recipe information page
                 recipeLink = recipeCardEl.children();
                 recipeLink.on('click', cardClickHandler);
@@ -193,9 +188,8 @@ function getFoodList(anime) {
 //Saving id of recipe to local storage when user clicks recipe card
 var cardClickHandler = function () {
     var btnClicked = $(this);
-    //onsole.log(btnClicked);
     var recipeIdAttr = btnClicked.attr('data-id');
-    //console.log(recipeIdAttr);
+
     localStorage.setItem("recipe-id", recipeIdAttr);
     document.location = './recipe.html';
 }

@@ -7,7 +7,6 @@ var searchInput = document.querySelector('#query');
 var formSubmitHandler = function (event) {
   event.preventDefault();
   var animeTitle = searchInput.value.trim();
-  //console.log(animeTitle);
 
   //converting anime search input to function in anime js for fetch url
   animeTitle = animeTitle.replace(/ /g, "%20");
