@@ -221,9 +221,3 @@ span {
 ::placeholder {
   opacity: 1;
 }
-
-.anime-btn {
-  float: right;
-  flex:auto;
-  padding-left: 2250px;
-}
