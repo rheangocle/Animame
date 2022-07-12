@@ -1,9 +1,12 @@
+//Declaring variables
 var cookInstructionsEl = $('#cooking-intructions');
 var recipeImageCardEl = $('.img-recipe-card');
 var ingredientsListEl = $('.ingredients-list')
 var pageTitle = $("#recipe-page-title");
 
+//Fucntion to get recipe information from tasty api
 function getRecipe() {
+  //getting recipe ID from local storage
   var recipeId = localStorage.getItem("recipe-id");
   const options = {
     method: 'GET',
@@ -13,20 +16,23 @@ function getRecipe() {
     }
   };
 
-  // fetch(`https://tasty.p.rapidapi.com/recipes/get-more-info?id=${id}`, options)
   fetch(`https://tasty.p.rapidapi.com/recipes/get-more-info?id=${recipeId}`, options)
     .then(response => response.json())
     .then(info => {
-      console.log(info);
-      pageTitle.text("Animame | " + info.name);
-      for (var i = 0; i < info.instructions.length; i++) {
+      //console.log(info);
 
+      //Displaying anime name on tab
+      pageTitle.text("Animame | " + info.name);
+
+      //Adding cooking instructions onto page
+      for (var i = 0; i < info.instructions.length; i++) {
         var prepStep =
           `<li class='recipe-list-items'> ${info.instructions[i].position}. ${info.instructions[i].display_text} </li>`;
         cookInstructionsEl.append(prepStep);
-        console.log(prepStep);
+        //console.log(prepStep);
       }
 
+      //Adding ingredient information onto page
       for (var i = 0; i < info.sections.length; i++) {
         var ingredientsSection = `
     <div class="title is-6 ">${info.sections[i].name}
@@ -42,6 +48,7 @@ function getRecipe() {
         }
       }
 
+      //Adding recipe image to page
       var recipeImage = `
       <div class="card-image is-6-desktop">
         <img class="recipe-image" src="${info.thumbnail_url}" alt="image of ${info.name}">
@@ -52,4 +59,5 @@ function getRecipe() {
     .catch(err => console.error(err));
 }
 
+//Calling function to get recipe info
 getRecipe()
