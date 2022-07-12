@@ -1,8 +1,11 @@
-// global variable declaration
+//Declaring variables
 var browseAnimeCards = $('#browse-anime-cards');
 var cardsReal;
 var pageNumber = 0;
 var showMore = $('#moreBtn');
+var formEl = document.querySelector('#form');
+var searchBtn = document.querySelector('#search-btn');
+var searchInput = document.querySelector('#query');
 
 // Displaying more anime onto page
 var incrementPage = function () {
@@ -17,17 +20,18 @@ var incrementPage = function () {
 //event listener to display more info
 showMore.on('click', incrementPage);
 
-// setting up the initial call function
-var browseAnime = function () {
+// displaying data based on the user's search from the home page
+var searchAnime = function () {
+    // fetching data from the api, limiting to top 12 options during the search
+    animeTitle = localStorage.getItem("animeSearch");
     fetch(
-        // fetching data from kitsu based on anime popularity, max 12 items per page, first page
-        'https://kitsu.io/api/edge/anime?sort=popularityRank&page[limit]=12&page[offset]=' + pageNumber
+        'https://kitsu.io/api/edge/anime?filter[text]=' + animeTitle + '&page[limit]=12&page[offset]=' + pageNumber
     )
         .then(function (response) {
             return response.json();
         })
         .then(function (data) {
-            // looping through all 12 results
+            // looping through the first 12 results
             for (i = 0; i < 12; i++) {
                 // creating the anchor element to contain all anime info on the page
                 var anchor = $('<a class="column anime-browse-container"></a>')
@@ -68,7 +72,7 @@ var browseAnime = function () {
         });
 }
 
-// setting up the page swap
+// swapping pages when a user clicks on a particular anime
 var id;
 function swapPage(event) {
     event.preventDefault();
@@ -81,5 +85,17 @@ function swapPage(event) {
     document.location = './anime.html';
 }
 
-// calling function to fetch information and append to page
-browseAnime();
+//Event listener function for search input
+var formSubmitHandler = function (event) {
+    event.preventDefault();
+    var animeTitle = searchInput.value.trim();
+
+    //converting anime search input to function in anime js for fetch url
+    animeTitle = animeTitle.replace(/ /g, "%20");
+    localStorage.setItem("animeSearch", animeTitle);
+    document.location = "./search-anime.html";
+}
+
+// calling all the main functions to display search info
+searchBtn.addEventListener('click', formSubmitHandler);
+searchAnime();
