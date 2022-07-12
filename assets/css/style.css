@@ -1,7 +1,6 @@
 body {
   margin: 0;
   text-align: center;
-  font-family: sans-serif;
   color: #fefefe;
 }
 
@@ -14,7 +13,6 @@ body {
 
 .columns {
   column-gap: 1.5rem;
-
 }
 
 img {
@@ -45,11 +43,6 @@ img .shade {
   max-height: 100%;
 }
 
-/* .anime-block {
-  margin-top: 50px;
-} */
-
-/* can i make this ing-card??? v */
 
 .card {
   border-radius: 10px;
@@ -161,7 +154,6 @@ span {
   opacity: .30;
 }
 
-
 @keyframes rotate360 {
   from {
     transform: rotateY(0deg);
@@ -172,15 +164,6 @@ span {
   }
 }
 
-/* .column {
-  float: left;
-  width: 25%;
-  box-shadow: 5px 5px 5px darkgray;
-  padding: 50px;
-}
-.column:hover {
-  opacity: .70;
-} */
 
 .row {
   padding-top: 60px;
@@ -231,4 +214,12 @@ span {
   box-shadow: 0px 0px 10px 5px gray;
   border-radius: 3px;
   padding: 10px;
+}
+
+@media screen and (max-width: 767px) {
+  .index-hero-body {
+    padding-top: 200px;
+    margin-bottom: 100px;
+  }
+
 }
