@@ -20,7 +20,6 @@ function getRecipe() {
   fetch(`https://tasty.p.rapidapi.com/recipes/get-more-info?id=${recipeId}`, options)
     .then(response => response.json())
     .then(info => {
-      console.log(info);
       //Displaying anime name on tab
       pageTitle.text("Animame | " + info.name);
 
@@ -51,7 +50,7 @@ function getRecipe() {
       //Adding recipe image to page
       var recipeImage = `
       <div class="card-image is-6-desktop">
-        <img class="recipe-image" src="${info.thumbnail_url}" alt="image of ${info.name}">
+        <img class="recipe-image box-shadow" src="${info.thumbnail_url}" alt="image of ${info.name}">
       </div > `
       recipeImageCardEl.append(recipeImage);
     })
