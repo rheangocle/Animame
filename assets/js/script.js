@@ -1,12 +1,15 @@
+//Declaring variables
 var formEl = document.querySelector('#form');
 var searchBtn = document.querySelector('#search-btn');
 var searchInput = document.querySelector('#query');
 
+//Event listener function for search input
 var formSubmitHandler = function (event) {
   event.preventDefault();
   var animeTitle = searchInput.value.trim();
-  console.log(animeTitle);
-  //need to add anime search to function in anime js for fetch url
+  //console.log(animeTitle);
+
+  //converting anime search input to function in anime js for fetch url
   animeTitle = animeTitle.replace(/ /g, "%20");
   // fetching data from the api, limiting to top 3 options during the search
   fetch(
@@ -30,10 +33,15 @@ var formSubmitHandler = function (event) {
       // console.log(searchPosterImage);
       // formEl.append(searchPosterImage);
       id = data.data[0].id;
-      console.log(id);
+      //console.log(id);
+
+      //Saving anime id to local storage
       localStorage.setItem("id", id);
+
+      //Redirecting to anime html
       document.location = "./anime.html";
     });
 }
 
+//Event listener when user clicks search
 searchBtn.addEventListener('click', formSubmitHandler);
